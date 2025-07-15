@@ -1,4 +1,5 @@
 import ExpandableText from "./ExpandableText";
+import ExternalLinkIcon from "./ExternalLinkIcon";
 
 interface ThesesAndPapersProps {
   brightness: number;
@@ -27,12 +28,13 @@ export default function ThesesAndPapers({
               href="https://github.com/GrgoPenava/Masters-thesis"
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors duration-300"
+              className="group transition-colors duration-300 inline-flex items-center gap-2"
               style={{
                 color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
               }}
             >
               Application development based on Vue.js
+              <ExternalLinkIcon size={16} />
             </a>
           </h3>
           <p
@@ -66,12 +68,13 @@ export default function ThesesAndPapers({
               href="https://github.com/GrgoPenava/Bachelors-thesis"
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors duration-300"
+              className="group transition-colors duration-300 inline-flex items-center gap-2"
               style={{
                 color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
               }}
             >
               Industry 4.0 and lean production
+              <ExternalLinkIcon size={16} />
             </a>
           </h3>
           <p
@@ -105,12 +108,13 @@ export default function ThesesAndPapers({
               href="https://github.com/GrgoPenava/face-recognition"
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors duration-300"
+              className="group transition-colors duration-300 inline-flex items-center gap-2"
               style={{
                 color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
               }}
             >
               Face recognition in images using deep learning
+              <ExternalLinkIcon size={16} />
             </a>
           </h3>
           <p
