@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import Earth3D from "./Earth3D";
 
 interface TimePickerProps {
-  onTimeChange?: (time: string, brightness: number) => void;
+  onTimeChange?: (brightness: number) => void;
 }
 
 export default function TimePicker({ onTimeChange }: TimePickerProps) {
@@ -57,7 +57,6 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
 
   const updateTheme = (minutes: number) => {
     const brightness = calculateBrightness(minutes);
-    const time = minToTime(minutes);
 
     const bgLight = Math.floor(10 + 245 * brightness);
     const bgDark = Math.floor(5 + 25 * brightness);
@@ -87,7 +86,7 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
       accentOpacity.toString()
     );
 
-    onTimeChange?.(time, brightness);
+    onTimeChange?.(brightness);
   };
 
   const updateTime = (rotation: number) => {
@@ -133,7 +132,7 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
       gsap.set(ringRef.current, { rotation: initialRotation });
       gsap.set(handleRef.current, { rotation: -initialRotation });
     }
-  }, []);
+  }, [updateTheme]);
 
   const currentTime = minToTime(currentMinutes);
 
@@ -144,7 +143,7 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
   return (
     <div className="fixed top-8 left-8 z-50">
       <div className="mb-2 flex justify-center">
-        <div className="text-xs font-mono  px-2 py-1 rounded backdrop-blur-sm text-center">
+        <div className="text-xs font-mono px-2 py-1 rounded backdrop-blur-sm text-center">
           <div>Current time: {currentTime}</div>
           <div>
             Brightness: {Math.round(calculateBrightness(currentMinutes) * 100)}%

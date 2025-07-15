@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TimePicker from "./components/TimePicker";
@@ -16,7 +16,6 @@ if (typeof window !== "undefined") {
 }
 
 export default function Portfolio() {
-  const [currentTime, setCurrentTime] = useState("12:00");
   const [brightness, setBrightness] = useState(1);
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>(
     {}
@@ -41,7 +40,7 @@ export default function Portfolio() {
         }
       );
 
-      gsap.utils.toArray(".section-item").forEach((item: any) => {
+      (gsap.utils.toArray(".section-item") as Element[]).forEach((item) => {
         gsap.fromTo(
           item,
           { opacity: 0, y: 20 },
@@ -65,8 +64,7 @@ export default function Portfolio() {
     };
   }, []);
 
-  const handleTimeChange = (time: string, newBrightness: number) => {
-    setCurrentTime(time);
+  const handleTimeChange = (newBrightness: number) => {
     setBrightness(newBrightness);
   };
 
