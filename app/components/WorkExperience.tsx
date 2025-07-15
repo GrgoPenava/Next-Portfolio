@@ -51,12 +51,31 @@ export default function WorkExperience({
             </span>
           </div>
           <ExpandableText
-            text="Backend system development for a FinTech company: • Designed and developed RESTful APIs using Spring Boot • Upgraded and maintained an existing Java-based system (both backend and frontend) • Integrated multiple backend services for cross-system communication • Deployed services across different environments using Jenkins and Ansible • Performed database schema upgrades and wrote custom SQL scripts • Worked with Apache Kafka for real-time data streaming and service communication Technologies used: Java, Spring Boot, Apache Kafka, Jenkins, Ansible, Docker, Microsoft SQL Server, Maven"
+            text="Backend system development for a FinTech company focused on creating scalable and reliable financial services."
             itemId="7-payments"
             maxLength={100}
             brightness={brightness}
             expandedItems={expandedItems}
             onToggle={onToggleExpand}
+            bulletPoints={[
+              "Designed and developed RESTful APIs using Spring Boot",
+              "Upgraded and maintained an existing Java-based system (both backend and frontend)",
+              "Integrated multiple backend services for cross-system communication",
+              "Deployed services across different environments using Jenkins and Ansible",
+              "Performed database schema upgrades and wrote custom SQL scripts",
+              "Worked with Apache Kafka for real-time data streaming and service communication",
+            ]}
+            technologies={[
+              "Java",
+              "JavaScript",
+              "Spring Boot",
+              "Apache Kafka",
+              "Jenkins",
+              "Ansible",
+              "Docker",
+              "Microsoft SQL Server",
+              "Maven",
+            ]}
           />
         </div>
 
@@ -95,12 +114,28 @@ export default function WorkExperience({
             </span>
           </div>
           <ExpandableText
-            text="Web application development: • Developed a UI editor for a Croatian highway infrastructure project • Implemented real-time robot control and map visualization using WebSockets • Collaborated on building user interfaces for managing smart devices Technologies used: Vue.js, TypeScript, Tailwind CSS, Git, REST API, WebSocket"
+            text="Web application development for infrastructure monitoring and smart device management systems."
             itemId="sick-mobilisis"
-            maxLength={100}
+            maxLength={50}
             brightness={brightness}
             expandedItems={expandedItems}
             onToggle={onToggleExpand}
+            bulletPoints={[
+              "Developed a UI editor for a Croatian highway infrastructure project",
+              "Implemented real-time robot control and map visualization using WebSockets",
+              "Collaborated on building user interfaces for managing smart devices",
+            ]}
+            technologies={[
+              "Vue.js",
+              "TypeScript",
+              "Tailwind CSS",
+              "JWT",
+              "Postman",
+              "Playwright",
+              "Git",
+              "REST API",
+              "WebSocket",
+            ]}
           />
         </div>
       </div>

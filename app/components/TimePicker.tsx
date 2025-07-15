@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import Earth3D from "./Earth3D";
 
@@ -55,39 +55,42 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
     }
   };
 
-  const updateTheme = (minutes: number) => {
-    const brightness = calculateBrightness(minutes);
+  const updateTheme = useCallback(
+    (minutes: number) => {
+      const brightness = calculateBrightness(minutes);
 
-    const bgLight = Math.floor(10 + 245 * brightness);
-    const bgDark = Math.floor(5 + 25 * brightness);
-    const textLight = Math.floor(255 * (1 - brightness) + 50 * brightness);
-    const textDark = Math.floor(150 + 105 * brightness);
+      const bgLight = Math.floor(10 + 245 * brightness);
+      const bgDark = Math.floor(5 + 25 * brightness);
+      const textLight = Math.floor(255 * (1 - brightness) + 50 * brightness);
+      const textDark = Math.floor(150 + 105 * brightness);
 
-    document.documentElement.style.setProperty(
-      "--time-bg-light",
-      `rgb(${bgLight}, ${bgLight}, ${bgLight})`
-    );
-    document.documentElement.style.setProperty(
-      "--time-bg-dark",
-      `rgb(${bgDark}, ${bgDark}, ${bgDark})`
-    );
-    document.documentElement.style.setProperty(
-      "--time-text-light",
-      `rgb(${textLight}, ${textLight}, ${textLight})`
-    );
-    document.documentElement.style.setProperty(
-      "--time-text-dark",
-      `rgb(${textDark}, ${textDark}, ${textDark})`
-    );
+      document.documentElement.style.setProperty(
+        "--time-bg-light",
+        `rgb(${bgLight}, ${bgLight}, ${bgLight})`
+      );
+      document.documentElement.style.setProperty(
+        "--time-bg-dark",
+        `rgb(${bgDark}, ${bgDark}, ${bgDark})`
+      );
+      document.documentElement.style.setProperty(
+        "--time-text-light",
+        `rgb(${textLight}, ${textLight}, ${textLight})`
+      );
+      document.documentElement.style.setProperty(
+        "--time-text-dark",
+        `rgb(${textDark}, ${textDark}, ${textDark})`
+      );
 
-    const accentOpacity = 0.3 + brightness * 0.7;
-    document.documentElement.style.setProperty(
-      "--time-accent-opacity",
-      accentOpacity.toString()
-    );
+      const accentOpacity = 0.3 + brightness * 0.7;
+      document.documentElement.style.setProperty(
+        "--time-accent-opacity",
+        accentOpacity.toString()
+      );
 
-    onTimeChange?.(brightness);
-  };
+      onTimeChange?.(brightness);
+    },
+    [onTimeChange]
+  );
 
   const updateTime = (rotation: number) => {
     const normalizedRotation = ((rotation % 360) + 360) % 360;
@@ -132,7 +135,7 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
       gsap.set(ringRef.current, { rotation: initialRotation });
       gsap.set(handleRef.current, { rotation: -initialRotation });
     }
-  }, [updateTheme]);
+  }, []);
 
   const currentTime = minToTime(currentMinutes);
 
@@ -143,7 +146,7 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
   return (
     <div className="fixed top-8 left-8 z-50">
       <div className="mb-2 flex justify-center">
-        <div className="text-xs font-mono px-2 py-1 rounded backdrop-blur-sm text-center">
+        <div className="text-xs font-mono px-2 py-1 text-center">
           <div>Current time: {currentTime}</div>
           <div>
             Brightness: {Math.round(calculateBrightness(currentMinutes) * 100)}%

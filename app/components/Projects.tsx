@@ -1,3 +1,5 @@
+import TechnologiesList from "./TechnologiesList";
+
 interface ProjectsProps {
   brightness: number;
 }
@@ -33,47 +35,11 @@ export default function Projects({ brightness }: ProjectsProps) {
             Full-stack e-commerce rješenje s Next.js, Stripe integracijom i
             MongoDB bazom podataka.
           </p>
-          <div className="flex flex-wrap gap-2">
-            <span
-              className="px-2 py-1 rounded text-sm transition-colors duration-500"
-              style={{
-                backgroundColor: `rgba(${200 + brightness * 55}, ${
-                  200 + brightness * 55
-                }, ${200 + brightness * 55}, 0.3)`,
-                color: `rgba(${80 - brightness * 40}, ${
-                  80 - brightness * 40
-                }, ${80 - brightness * 40}, 0.9)`,
-              }}
-            >
-              Next.js
-            </span>
-            <span
-              className="px-2 py-1 rounded text-sm transition-colors duration-500"
-              style={{
-                backgroundColor: `rgba(${200 + brightness * 55}, ${
-                  200 + brightness * 55
-                }, ${200 + brightness * 55}, 0.3)`,
-                color: `rgba(${80 - brightness * 40}, ${
-                  80 - brightness * 40
-                }, ${80 - brightness * 40}, 0.9)`,
-              }}
-            >
-              Stripe
-            </span>
-            <span
-              className="px-2 py-1 rounded text-sm transition-colors duration-500"
-              style={{
-                backgroundColor: `rgba(${200 + brightness * 55}, ${
-                  200 + brightness * 55
-                }, ${200 + brightness * 55}, 0.3)`,
-                color: `rgba(${80 - brightness * 40}, ${
-                  80 - brightness * 40
-                }, ${80 - brightness * 40}, 0.9)`,
-              }}
-            >
-              MongoDB
-            </span>
-          </div>
+          <TechnologiesList
+            technologies={["Next.js", "Stripe", "MongoDB"]}
+            brightness={brightness}
+            showLabel={false}
+          />
         </div>
 
         <div className="section-item">
@@ -101,47 +67,11 @@ export default function Projects({ brightness }: ProjectsProps) {
             React aplikacija za upravljanje zadacima s real-time suradnjom i
             Socket.io integracijom.
           </p>
-          <div className="flex flex-wrap gap-2">
-            <span
-              className="px-2 py-1 rounded text-sm transition-colors duration-500"
-              style={{
-                backgroundColor: `rgba(${200 + brightness * 55}, ${
-                  200 + brightness * 55
-                }, ${200 + brightness * 55}, 0.3)`,
-                color: `rgba(${80 - brightness * 40}, ${
-                  80 - brightness * 40
-                }, ${80 - brightness * 40}, 0.9)`,
-              }}
-            >
-              React
-            </span>
-            <span
-              className="px-2 py-1 rounded text-sm transition-colors duration-500"
-              style={{
-                backgroundColor: `rgba(${200 + brightness * 55}, ${
-                  200 + brightness * 55
-                }, ${200 + brightness * 55}, 0.3)`,
-                color: `rgba(${80 - brightness * 40}, ${
-                  80 - brightness * 40
-                }, ${80 - brightness * 40}, 0.9)`,
-              }}
-            >
-              Node.js
-            </span>
-            <span
-              className="px-2 py-1 rounded text-sm transition-colors duration-500"
-              style={{
-                backgroundColor: `rgba(${200 + brightness * 55}, ${
-                  200 + brightness * 55
-                }, ${200 + brightness * 55}, 0.3)`,
-                color: `rgba(${80 - brightness * 40}, ${
-                  80 - brightness * 40
-                }, ${80 - brightness * 40}, 0.9)`,
-              }}
-            >
-              Socket.io
-            </span>
-          </div>
+          <TechnologiesList
+            technologies={["React", "Node.js", "Socket.io"]}
+            brightness={brightness}
+            showLabel={false}
+          />
         </div>
 
         <div className="section-item">
@@ -169,47 +99,11 @@ export default function Projects({ brightness }: ProjectsProps) {
             Minimalistička portfolio stranica s GSAP animacijama i interaktivnim
             elementima.
           </p>
-          <div className="flex flex-wrap gap-2">
-            <span
-              className="px-2 py-1 rounded text-sm transition-colors duration-500"
-              style={{
-                backgroundColor: `rgba(${200 + brightness * 55}, ${
-                  200 + brightness * 55
-                }, ${200 + brightness * 55}, 0.3)`,
-                color: `rgba(${80 - brightness * 40}, ${
-                  80 - brightness * 40
-                }, ${80 - brightness * 40}, 0.9)`,
-              }}
-            >
-              Next.js
-            </span>
-            <span
-              className="px-2 py-1 rounded text-sm transition-colors duration-500"
-              style={{
-                backgroundColor: `rgba(${200 + brightness * 55}, ${
-                  200 + brightness * 55
-                }, ${200 + brightness * 55}, 0.3)`,
-                color: `rgba(${80 - brightness * 40}, ${
-                  80 - brightness * 40
-                }, ${80 - brightness * 40}, 0.9)`,
-              }}
-            >
-              GSAP
-            </span>
-            <span
-              className="px-2 py-1 rounded text-sm transition-colors duration-500"
-              style={{
-                backgroundColor: `rgba(${200 + brightness * 55}, ${
-                  200 + brightness * 55
-                }, ${200 + brightness * 55}, 0.3)`,
-                color: `rgba(${80 - brightness * 40}, ${
-                  80 - brightness * 40
-                }, ${80 - brightness * 40}, 0.9)`,
-              }}
-            >
-              TailwindCSS
-            </span>
-          </div>
+          <TechnologiesList
+            technologies={["Next.js", "GSAP", "TailwindCSS"]}
+            brightness={brightness}
+            showLabel={false}
+          />
         </div>
       </div>
     </section>
