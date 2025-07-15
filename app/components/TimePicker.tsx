@@ -144,8 +144,8 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
   return (
     <div className="fixed top-8 left-8 z-50">
       <div className="mb-2 flex justify-center">
-        <div className="text-xs font-mono bg-black/10 dark:bg-white/10 px-2 py-1 rounded backdrop-blur-sm text-center">
-          <div>Trenutno vrijeme: {currentTime}</div>
+        <div className="text-xs font-mono  px-2 py-1 rounded backdrop-blur-sm text-center">
+          <div>Current time: {currentTime}</div>
           <div>
             Brightness: {Math.round(calculateBrightness(currentMinutes) * 100)}%
           </div>
