@@ -40,12 +40,11 @@ export default function Projects({
               }, ${100 - brightness * 30}, 0.7)`,
             }}
           >
-            Master's Thesis Project
+            Master&apos;s Thesis Project
           </p>
           <ExpandableText
             text="Full-stack web application for team management and task delegation, developed as part of Master's thesis to demonstrate modern web development practices using Vue.js."
             itemId="tasky-project"
-            maxLength={120}
             brightness={brightness}
             expandedItems={expandedItems}
             onToggle={onToggleExpand}
@@ -144,7 +143,6 @@ export default function Projects({
           <ExpandableText
             text="Minimalist portfolio website featuring dynamic time-based theming, 3D interactive elements, and modern animations to showcase professional experience and projects."
             itemId="portfolio-project"
-            maxLength={120}
             brightness={brightness}
             expandedItems={expandedItems}
             onToggle={onToggleExpand}
@@ -195,7 +193,6 @@ export default function Projects({
           <ExpandableText
             text="Full-stack web platform for sharing and discovering VS Code configurations, extensions, and themes, enabling developers to share their development environments with the community."
             itemId="vscode-profiles-project"
-            maxLength={120}
             brightness={brightness}
             expandedItems={expandedItems}
             onToggle={onToggleExpand}
@@ -255,7 +252,6 @@ export default function Projects({
           <ExpandableText
             text="Mobile application development project in collaboration with Sedam IT company, creating a android application for merchants using SCRUM methodology and modern backend technologies."
             itemId="trading-app-project"
-            maxLength={120}
             brightness={brightness}
             expandedItems={expandedItems}
             onToggle={onToggleExpand}
@@ -312,7 +308,6 @@ export default function Projects({
           <ExpandableText
             text="Web application developed in collaboration with SICK Mobilisis for parking management in Dubrovnik, featuring real-time parking space monitoring and analytics."
             itemId="parking-app-project"
-            maxLength={120}
             brightness={brightness}
             expandedItems={expandedItems}
             onToggle={onToggleExpand}

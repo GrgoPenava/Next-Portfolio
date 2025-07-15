@@ -53,7 +53,6 @@ export default function WorkExperience({
           <ExpandableText
             text="Backend system development for a FinTech company focused on creating scalable and reliable financial services."
             itemId="7-payments"
-            maxLength={100}
             brightness={brightness}
             expandedItems={expandedItems}
             onToggle={onToggleExpand}
@@ -116,7 +115,6 @@ export default function WorkExperience({
           <ExpandableText
             text="Web application development for infrastructure monitoring and smart device management systems."
             itemId="sick-mobilisis"
-            maxLength={50}
             brightness={brightness}
             expandedItems={expandedItems}
             onToggle={onToggleExpand}

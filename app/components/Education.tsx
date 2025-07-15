@@ -43,7 +43,7 @@ export default function Education({ brightness }: EducationProps) {
                   }, ${100 - brightness * 30}, 0.7)`,
                 }}
               >
-                Master's degree - Information and programming engineering
+                Master&apos;s degree - Information and programming engineering
               </p>
             </div>
           </div>
@@ -102,7 +102,7 @@ export default function Education({ brightness }: EducationProps) {
                   }, ${100 - brightness * 30}, 0.7)`,
                 }}
               >
-                Bachelor's degree - Information systems
+                Bachelor&apos;s degree - Information systems
               </p>
             </div>
           </div>

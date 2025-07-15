@@ -5,7 +5,6 @@ import TechnologiesList from "./TechnologiesList";
 interface ExpandableTextProps {
   text: string;
   itemId: string;
-  maxLength?: number;
   brightness: number;
   expandedItems: Record<string, boolean>;
   onToggle: (itemId: string) => void;
@@ -16,7 +15,6 @@ interface ExpandableTextProps {
 export default function ExpandableText({
   text,
   itemId,
-  maxLength = 150,
   brightness,
   expandedItems,
   onToggle,

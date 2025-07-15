@@ -50,7 +50,6 @@ export default function ThesesAndPapers({
           <ExpandableText
             text="This paper explores the development of modern web applications using the Vue.js framework. It focuses on component-based architecture, state management with Pinia, and integration with RESTful APIs. The project demonstrates how Vue.js can be used to build fast, maintainable, and scalable front-end solutions."
             itemId="masters-thesis"
-            maxLength={120}
             brightness={brightness}
             expandedItems={expandedItems}
             onToggle={onToggleExpand}
@@ -90,7 +89,6 @@ export default function ThesesAndPapers({
           <ExpandableText
             text="The work analyzes how Industry 4.0 technologies - such as IoT, automation, and data analytics - can enhance lean manufacturing principles. It provides case studies and highlights the synergy between digital transformation and operational efficiency in modern production environments."
             itemId="bachelors-thesis"
-            maxLength={120}
             brightness={brightness}
             expandedItems={expandedItems}
             onToggle={onToggleExpand}
@@ -130,7 +128,6 @@ export default function ThesesAndPapers({
           <ExpandableText
             text="This research paper examines the use of convolutional neural networks (CNNs) for face recognition tasks. It includes dataset preparation, model training, and evaluation using common performance metrics. The study demonstrates the potential of deep learning in achieving accurate and robust face detection and identification."
             itemId="face-recognition"
-            maxLength={120}
             brightness={brightness}
             expandedItems={expandedItems}
             onToggle={onToggleExpand}
