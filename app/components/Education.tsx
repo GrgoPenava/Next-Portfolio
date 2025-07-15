@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface EducationProps {
   brightness: number;
 }
@@ -21,16 +23,29 @@ export default function Education({ brightness }: EducationProps) {
             >
               University of Zagreb
             </p>
-            <p
-              className="transition-colors duration-500"
-              style={{
-                color: `rgba(${100 - brightness * 30}, ${
-                  100 - brightness * 30
-                }, ${100 - brightness * 30}, 0.7)`,
-              }}
-            >
-              Information and programming engineering
-            </p>
+            <div className="flex items-center gap-2 mt-1">
+              <Image
+                src="/graduation-cap.png"
+                alt="Graduation cap"
+                width={16}
+                height={16}
+                className="transition-all duration-300"
+                style={{
+                  opacity: 0.7 + brightness * 0.3,
+                  filter: `invert(${1 - brightness})`,
+                }}
+              />
+              <p
+                className="transition-colors duration-500"
+                style={{
+                  color: `rgba(${100 - brightness * 30}, ${
+                    100 - brightness * 30
+                  }, ${100 - brightness * 30}, 0.7)`,
+                }}
+              >
+                Master's degree - Information and programming engineering
+              </p>
+            </div>
           </div>
           <span
             className="text-sm transition-colors duration-500"
@@ -67,16 +82,29 @@ export default function Education({ brightness }: EducationProps) {
             >
               University of Zagreb
             </p>
-            <p
-              className="transition-colors duration-500"
-              style={{
-                color: `rgba(${100 - brightness * 30}, ${
-                  100 - brightness * 30
-                }, ${100 - brightness * 30}, 0.7)`,
-              }}
-            >
-              Information systems
-            </p>
+            <div className="flex items-center gap-2 mt-1">
+              <Image
+                src="/graduation-cap.png"
+                alt="Graduation cap"
+                width={16}
+                height={16}
+                className="transition-all duration-300"
+                style={{
+                  opacity: 0.7 + brightness * 0.3,
+                  filter: `invert(${1 - brightness})`,
+                }}
+              />
+              <p
+                className="transition-colors duration-500"
+                style={{
+                  color: `rgba(${100 - brightness * 30}, ${
+                    100 - brightness * 30
+                  }, ${100 - brightness * 30}, 0.7)`,
+                }}
+              >
+                Bachelor's degree - Information systems
+              </p>
+            </div>
           </div>
           <span
             className="text-sm transition-colors duration-500"
