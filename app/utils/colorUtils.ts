@@ -100,92 +100,271 @@ export const getBorderColor = () => {
   }
 };
 
-// For footer border that needs high visibility like icons
 export const getFooterBorderColor = () => {
   const luminance = getBackgroundLuminance();
 
   if (luminance < 0.3) {
-    // Dark background - use light border with higher opacity
     return `rgba(200, 200, 200, 0.6)`;
   } else if (luminance > 0.7) {
-    // Light background - use dark border with higher opacity
     return `rgba(60, 60, 60, 0.6)`;
   } else {
-    // Medium background - ensure strong contrast
     const grayValue = luminance < 0.5 ? 220 : 40;
     return `rgba(${grayValue}, ${grayValue}, ${grayValue}, 0.7)`;
   }
 };
 
-// Blue color that remains readable on all backgrounds
+const getContrastRatio = (color1Luminance: number, color2Luminance: number) => {
+  const lighter = Math.max(color1Luminance, color2Luminance);
+  const darker = Math.min(color1Luminance, color2Luminance);
+  return (lighter + 0.05) / (darker + 0.05);
+};
+
+const getLuminanceFromRGB = (r: number, g: number, b: number) => {
+  const [rs, gs, bs] = [r, g, b].map((c) => {
+    const sRGB = c / 255;
+    return sRGB <= 0.03928
+      ? sRGB / 12.92
+      : Math.pow((sRGB + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+};
+
 export const getBlueColor = () => {
-  return `rgba(0, 98, 178, 0.9)`;
-  /* if (luminance < 0.3) {
-    // Dark background - use lighter blue (similar to blue-400)
-    return `rgba(96, 165, 250, 0.9)`;
-  } else if (luminance > 0.7) {
-    // Light background - use much darker blue (blue-700/800)
-    return `rgba(29, 78, 216, 0.95)`;
+  const backgroundLuminance = getBackgroundLuminance();
+
+  const blueColors = [
+    { rgb: [7, 39, 105], name: "extra-dark-blue" },
+    { rgb: [15, 58, 141], name: "super-dark-blue" },
+    { rgb: [21, 67, 156], name: "very-dark-blue" },
+    { rgb: [29, 78, 216], name: "dark-blue" },
+    { rgb: [37, 99, 235], name: "medium-dark-blue" },
+    { rgb: [59, 130, 246], name: "medium-blue" },
+    { rgb: [96, 165, 250], name: "light-medium-blue" },
+    { rgb: [147, 197, 253], name: "light-blue" },
+    { rgb: [191, 219, 254], name: "very-light-blue" },
+    { rgb: [219, 234, 254], name: "ultra-light-blue" },
+  ];
+
+  let candidateColors: typeof blueColors = [];
+
+  if (backgroundLuminance < 0.25) {
+    candidateColors = blueColors.slice(6);
+  } else if (backgroundLuminance < 0.35) {
+    candidateColors = blueColors.slice(5);
+  } else if (backgroundLuminance > 0.65) {
+    candidateColors = blueColors.slice(0, 5);
   } else {
-    // Medium background - use medium blue (blue-500/600)
-    return `rgba(37, 99, 235, 0.9)`;
-  } */
+    candidateColors = blueColors;
+  }
+
+  let bestColor =
+    candidateColors[Math.floor(candidateColors.length / 2)] || blueColors[4];
+  let bestContrast = 0;
+
+  for (const color of candidateColors) {
+    const [r, g, b] = color.rgb;
+    const colorLuminance = getLuminanceFromRGB(r, g, b);
+    const contrast = getContrastRatio(backgroundLuminance, colorLuminance);
+
+    if (contrast >= 3.0) {
+      let adjustedContrast = contrast;
+
+      if (contrast >= 7.0) {
+        adjustedContrast += 3;
+      } else if (contrast >= 4.5) {
+        adjustedContrast += 2;
+      } else if (contrast >= 3.0) {
+        adjustedContrast += 0.5;
+      }
+
+      if (adjustedContrast > bestContrast) {
+        bestContrast = adjustedContrast;
+        bestColor = color;
+      }
+    }
+  }
+
+  if (bestContrast === 0) {
+    for (const color of blueColors) {
+      const [r, g, b] = color.rgb;
+      const colorLuminance = getLuminanceFromRGB(r, g, b);
+      const contrast = getContrastRatio(backgroundLuminance, colorLuminance);
+
+      if (contrast > bestContrast) {
+        bestContrast = contrast;
+        bestColor = color;
+      }
+    }
+  }
+
+  const [r, g, b] = bestColor.rgb;
+  return `rgba(${r}, ${g}, ${b}, 0.9)`;
 };
 
-// For "Technologies used:" labels - lighter version
 export const getBlueLabelColor = () => {
-  return `rgba(0, 98, 178, 0.9)`;
+  const backgroundLuminance = getBackgroundLuminance();
 
-  /* if (luminance < 0.3) {
-    return `rgba(96, 165, 250, 0.8)`;
-  } else if (luminance > 0.7) {
-    return `rgba(29, 78, 216, 0.8)`;
+  const blueColors = [
+    { rgb: [7, 39, 105], name: "extra-dark-blue" },
+    { rgb: [15, 58, 141], name: "super-dark-blue" },
+    { rgb: [21, 67, 156], name: "very-dark-blue" },
+    { rgb: [29, 78, 216], name: "dark-blue" },
+    { rgb: [37, 99, 235], name: "medium-dark-blue" },
+    { rgb: [59, 130, 246], name: "medium-blue" },
+    { rgb: [96, 165, 250], name: "light-medium-blue" },
+    { rgb: [147, 197, 253], name: "light-blue" },
+    { rgb: [191, 219, 254], name: "very-light-blue" },
+    { rgb: [219, 234, 254], name: "ultra-light-blue" },
+  ];
+
+  let candidateColors: typeof blueColors = [];
+
+  if (backgroundLuminance < 0.25) {
+    candidateColors = blueColors.slice(6);
+  } else if (backgroundLuminance < 0.35) {
+    candidateColors = blueColors.slice(5);
+  } else if (backgroundLuminance > 0.65) {
+    candidateColors = blueColors.slice(0, 5);
   } else {
-    return `rgba(37, 99, 235, 0.8)`;
-  } */
+    candidateColors = blueColors;
+  }
+
+  let bestColor =
+    candidateColors[Math.floor(candidateColors.length / 2)] || blueColors[4];
+  let bestContrast = 0;
+
+  for (const color of candidateColors) {
+    const [r, g, b] = color.rgb;
+    const colorLuminance = getLuminanceFromRGB(r, g, b);
+    const contrast = getContrastRatio(backgroundLuminance, colorLuminance);
+
+    if (contrast >= 3.0) {
+      let adjustedContrast = contrast;
+
+      if (contrast >= 7.0) {
+        adjustedContrast += 3;
+      } else if (contrast >= 4.5) {
+        adjustedContrast += 2;
+      } else if (contrast >= 3.0) {
+        adjustedContrast += 0.5;
+      }
+
+      if (adjustedContrast > bestContrast) {
+        bestContrast = adjustedContrast;
+        bestColor = color;
+      }
+    }
+  }
+
+  if (bestContrast === 0) {
+    for (const color of blueColors) {
+      const [r, g, b] = color.rgb;
+      const colorLuminance = getLuminanceFromRGB(r, g, b);
+      const contrast = getContrastRatio(backgroundLuminance, colorLuminance);
+
+      if (contrast > bestContrast) {
+        bestContrast = contrast;
+        bestColor = color;
+      }
+    }
+  }
+
+  const [r, g, b] = bestColor.rgb;
+  return `rgba(${r}, ${g}, ${b}, 0.8)`;
 };
 
-// For borders with blue color
 export const getBlueBorderColor = () => {
-  return `rgba(0, 98, 178, 0.9)`;
+  const backgroundLuminance = getBackgroundLuminance();
 
-  /* if (luminance < 0.3) {
-    return `rgba(96, 165, 250, 0.4)`;
-  } else if (luminance > 0.7) {
-    return `rgba(29, 78, 216, 0.4)`;
+  const blueColors = [
+    { rgb: [7, 39, 105], name: "extra-dark-blue" },
+    { rgb: [15, 58, 141], name: "super-dark-blue" },
+    { rgb: [21, 67, 156], name: "very-dark-blue" },
+    { rgb: [29, 78, 216], name: "dark-blue" },
+    { rgb: [37, 99, 235], name: "medium-dark-blue" },
+    { rgb: [59, 130, 246], name: "medium-blue" },
+    { rgb: [96, 165, 250], name: "light-medium-blue" },
+    { rgb: [147, 197, 253], name: "light-blue" },
+    { rgb: [191, 219, 254], name: "very-light-blue" },
+    { rgb: [219, 234, 254], name: "ultra-light-blue" },
+  ];
+
+  let candidateColors: typeof blueColors = [];
+
+  if (backgroundLuminance < 0.25) {
+    candidateColors = blueColors.slice(6);
+  } else if (backgroundLuminance < 0.35) {
+    candidateColors = blueColors.slice(5);
+  } else if (backgroundLuminance > 0.65) {
+    candidateColors = blueColors.slice(0, 5);
   } else {
-    return `rgba(37, 99, 235, 0.4)`;
-  } */
+    candidateColors = blueColors;
+  }
+
+  let bestColor =
+    candidateColors[Math.floor(candidateColors.length / 2)] || blueColors[4];
+  let bestContrast = 0;
+
+  for (const color of candidateColors) {
+    const [r, g, b] = color.rgb;
+    const colorLuminance = getLuminanceFromRGB(r, g, b);
+    const contrast = getContrastRatio(backgroundLuminance, colorLuminance);
+
+    if (contrast >= 3.0) {
+      let adjustedContrast = contrast;
+
+      if (contrast >= 7.0) {
+        adjustedContrast += 3;
+      } else if (contrast >= 4.5) {
+        adjustedContrast += 2;
+      } else if (contrast >= 3.0) {
+        adjustedContrast += 0.5;
+      }
+
+      if (adjustedContrast > bestContrast) {
+        bestContrast = adjustedContrast;
+        bestColor = color;
+      }
+    }
+  }
+
+  if (bestContrast === 0) {
+    for (const color of blueColors) {
+      const [r, g, b] = color.rgb;
+      const colorLuminance = getLuminanceFromRGB(r, g, b);
+      const contrast = getContrastRatio(backgroundLuminance, colorLuminance);
+
+      if (contrast > bestContrast) {
+        bestContrast = contrast;
+        bestColor = color;
+      }
+    }
+  }
+
+  const [r, g, b] = bestColor.rgb;
+  return `rgba(${r}, ${g}, ${b}, 0.4)`;
 };
 
-// For icon filters to ensure they're always visible
 export const getIconFilter = () => {
   const luminance = getBackgroundLuminance();
 
   if (luminance < 0.3) {
-    // Dark background - invert to white
     return "invert(1)";
   } else if (luminance > 0.7) {
-    // Light background - keep original (dark)
     return "invert(0)";
   } else {
-    // Medium background - choose based on which provides better contrast
     return luminance < 0.5 ? "invert(0.8)" : "invert(0.2)";
   }
 };
 
-// For icon opacity to ensure they're always visible
 export const getIconOpacity = () => {
   const luminance = getBackgroundLuminance();
 
   if (luminance < 0.3) {
-    // Dark background - slightly transparent white
     return 0.85;
   } else if (luminance > 0.7) {
-    // Light background - solid dark
     return 0.9;
   } else {
-    // Medium background - ensure good visibility
     return 0.8;
   }
 };
