@@ -1,5 +1,11 @@
 import ExpandableText from "./ExpandableText";
 import ExternalLinkIcon from "./ExternalLinkIcon";
+import {
+  getSubtitleColor,
+  getTextColor,
+  useBackgroundAwareColors,
+  getBlueColor,
+} from "../utils/colorUtils";
 
 interface ProjectsProps {
   brightness: number;
@@ -12,9 +18,18 @@ export default function Projects({
   expandedItems,
   onToggleExpand,
 }: ProjectsProps) {
+  useBackgroundAwareColors();
+
   return (
     <section className="mb-16">
-      <h2 className="fade-in text-3xl font-bold mb-8">Projects</h2>
+      <h2
+        className="fade-in text-3xl font-bold mb-8 transition-colors duration-500"
+        style={{
+          color: getTextColor(brightness),
+        }}
+      >
+        Projects
+      </h2>
 
       <div className="space-y-8">
         <div className="section-item">
@@ -25,7 +40,7 @@ export default function Projects({
               rel="noopener noreferrer"
               className="group transition-colors duration-300 inline-flex items-center gap-2"
               style={{
-                color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+                color: getBlueColor(),
               }}
             >
               Tasky Web Application
@@ -35,9 +50,7 @@ export default function Projects({
           <p
             className="text-sm mb-2 transition-colors duration-500"
             style={{
-              color: `rgba(${100 - brightness * 30}, ${
-                100 - brightness * 30
-              }, ${100 - brightness * 30}, 0.7)`,
+              color: getSubtitleColor(brightness),
             }}
           >
             Master&apos;s Thesis Project
@@ -82,7 +95,7 @@ export default function Projects({
               rel="noopener noreferrer"
               className="group transition-colors duration-300 inline-flex items-center gap-1"
               style={{
-                color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+                color: getBlueColor(),
               }}
             >
               Frontend
@@ -94,7 +107,7 @@ export default function Projects({
               rel="noopener noreferrer"
               className="group transition-colors duration-300 inline-flex items-center gap-1"
               style={{
-                color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+                color: getBlueColor(),
               }}
             >
               Backend
@@ -106,7 +119,7 @@ export default function Projects({
               rel="noopener noreferrer"
               className="group transition-colors duration-300 inline-flex items-center gap-1"
               style={{
-                color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+                color: getBlueColor(),
               }}
             >
               Thesis
@@ -123,7 +136,7 @@ export default function Projects({
               rel="noopener noreferrer"
               className="group transition-colors duration-300 inline-flex items-center gap-2"
               style={{
-                color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+                color: getBlueColor(),
               }}
             >
               Personal Portfolio Website
@@ -133,9 +146,7 @@ export default function Projects({
           <p
             className="text-sm mb-2 transition-colors duration-500"
             style={{
-              color: `rgba(${100 - brightness * 30}, ${
-                100 - brightness * 30
-              }, ${100 - brightness * 30}, 0.7)`,
+              color: getSubtitleColor(brightness),
             }}
           >
             Personal Project
@@ -173,7 +184,7 @@ export default function Projects({
               rel="noopener noreferrer"
               className="group transition-colors duration-300 inline-flex items-center gap-2"
               style={{
-                color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+                color: getBlueColor(),
               }}
             >
               VS Code Profiles Platform
@@ -183,9 +194,7 @@ export default function Projects({
           <p
             className="text-sm mb-2 transition-colors duration-500"
             style={{
-              color: `rgba(${100 - brightness * 30}, ${
-                100 - brightness * 30
-              }, ${100 - brightness * 30}, 0.7)`,
+              color: getSubtitleColor(brightness),
             }}
           >
             Personal Project
@@ -232,7 +241,7 @@ export default function Projects({
               rel="noopener noreferrer"
               className="group transition-colors duration-300 inline-flex items-center gap-2"
               style={{
-                color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+                color: getBlueColor(),
               }}
             >
               FinTech Application
@@ -242,9 +251,7 @@ export default function Projects({
           <p
             className="text-sm mb-2 transition-colors duration-500"
             style={{
-              color: `rgba(${100 - brightness * 30}, ${
-                100 - brightness * 30
-              }, ${100 - brightness * 30}, 0.7)`,
+              color: getSubtitleColor(brightness),
             }}
           >
             Work-based Learning Project
@@ -288,7 +295,7 @@ export default function Projects({
               rel="noopener noreferrer"
               className="group transition-colors duration-300 inline-flex items-center gap-2"
               style={{
-                color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+                color: getBlueColor(),
               }}
             >
               Parking Management System
@@ -298,9 +305,7 @@ export default function Projects({
           <p
             className="text-sm mb-2 transition-colors duration-500"
             style={{
-              color: `rgba(${100 - brightness * 30}, ${
-                100 - brightness * 30
-              }, ${100 - brightness * 30}, 0.7)`,
+              color: getSubtitleColor(brightness),
             }}
           >
             Work-based Learning Project
@@ -338,7 +343,7 @@ export default function Projects({
               rel="noopener noreferrer"
               className="group transition-colors duration-300 inline-flex items-center gap-1"
               style={{
-                color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+                color: getBlueColor(),
               }}
             >
               Project Presentation

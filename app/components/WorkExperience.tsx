@@ -1,4 +1,10 @@
 import ExpandableText from "./ExpandableText";
+import {
+  getSubtitleColor,
+  getTextColor,
+  useBackgroundAwareColors,
+  getBlueColor,
+} from "../utils/colorUtils";
 
 interface WorkExperienceProps {
   brightness: number;
@@ -11,19 +17,35 @@ export default function WorkExperience({
   expandedItems,
   onToggleExpand,
 }: WorkExperienceProps) {
+  useBackgroundAwareColors();
+
   return (
     <section className="mb-16">
-      <h2 className="fade-in text-3xl font-bold mb-8">Work experience</h2>
+      <h2
+        className="fade-in text-3xl font-bold mb-8 transition-colors duration-500"
+        style={{
+          color: getTextColor(brightness),
+        }}
+      >
+        Work experience
+      </h2>
 
       <div className="space-y-8">
         <div className="section-item">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
             <div>
-              <h3 className="text-2xl font-semibold">Software Developer</h3>
+              <h3
+                className="text-2xl font-semibold transition-colors duration-500"
+                style={{
+                  color: getTextColor(brightness),
+                }}
+              >
+                Software Developer
+              </h3>
               <p
                 className="font-medium transition-colors duration-300"
                 style={{
-                  color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+                  color: getBlueColor(),
                 }}
               >
                 <a
@@ -32,7 +54,7 @@ export default function WorkExperience({
                   rel="noopener noreferrer"
                   className="transition-colors duration-300"
                   style={{
-                    color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+                    color: getBlueColor(),
                   }}
                 >
                   7 Payments
@@ -42,9 +64,7 @@ export default function WorkExperience({
             <span
               className="text-sm transition-colors duration-500"
               style={{
-                color: `rgba(${100 - brightness * 30}, ${
-                  100 - brightness * 30
-                }, ${100 - brightness * 30}, 0.7)`,
+                color: getSubtitleColor(brightness),
               }}
             >
               2024–Now
@@ -81,11 +101,18 @@ export default function WorkExperience({
         <div className="section-item">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
             <div>
-              <h3 className="text-2xl font-semibold">Frontend Developer</h3>
+              <h3
+                className="text-2xl font-semibold transition-colors duration-500"
+                style={{
+                  color: getTextColor(brightness),
+                }}
+              >
+                Frontend Developer
+              </h3>
               <p
                 className="font-medium transition-colors duration-300"
                 style={{
-                  color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+                  color: getBlueColor(),
                 }}
               >
                 <a
@@ -94,7 +121,7 @@ export default function WorkExperience({
                   rel="noopener noreferrer"
                   className="transition-colors duration-300"
                   style={{
-                    color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+                    color: getBlueColor(),
                   }}
                 >
                   SICK Mobilisis
@@ -104,9 +131,7 @@ export default function WorkExperience({
             <span
               className="text-sm transition-colors duration-500"
               style={{
-                color: `rgba(${100 - brightness * 30}, ${
-                  100 - brightness * 30
-                }, ${100 - brightness * 30}, 0.7)`,
+                color: getSubtitleColor(brightness),
               }}
             >
               2023-2024

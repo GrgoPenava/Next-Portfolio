@@ -1,6 +1,12 @@
 "use client";
 
 import TechnologiesList from "./TechnologiesList";
+import {
+  getTextColor,
+  getBorderColor,
+  useBackgroundAwareColors,
+  getBlueColor,
+} from "../utils/colorUtils";
 
 interface ExpandableTextProps {
   text: string;
@@ -21,6 +27,8 @@ export default function ExpandableText({
   technologies,
   bulletPoints,
 }: ExpandableTextProps) {
+  useBackgroundAwareColors();
+
   const isExpanded = expandedItems[itemId];
 
   const hasAdditionalContent =
@@ -32,9 +40,7 @@ export default function ExpandableText({
       <div
         className="transition-colors duration-500"
         style={{
-          color: `rgba(${80 - brightness * 40}, ${80 - brightness * 40}, ${
-            80 - brightness * 40
-          }, 0.9)`,
+          color: getTextColor(brightness, 0.9),
         }}
       >
         <p className="leading-relaxed">{text}</p>
@@ -58,9 +64,7 @@ export default function ExpandableText({
               showLabel={true}
               className="mt-4 pt-3 border-t border-opacity-20"
               style={{
-                borderColor: `rgba(${80 - brightness * 40}, ${
-                  80 - brightness * 40
-                }, ${80 - brightness * 40}, 0.3)`,
+                borderColor: getBorderColor(),
               }}
             />
           </div>
@@ -72,7 +76,7 @@ export default function ExpandableText({
           onClick={() => onToggle(itemId)}
           className="mt-3 text-sm font-medium transition-colors duration-300 hover:opacity-80"
           style={{
-            color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+            color: getBlueColor(),
           }}
         >
           {isExpanded ? "Read less" : "Read more"}

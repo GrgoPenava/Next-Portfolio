@@ -1,5 +1,11 @@
 import ExpandableText from "./ExpandableText";
 import ExternalLinkIcon from "./ExternalLinkIcon";
+import {
+  getSubtitleColor,
+  getTextColor,
+  useBackgroundAwareColors,
+  getBlueColor,
+} from "../utils/colorUtils";
 
 interface ThesesAndPapersProps {
   brightness: number;
@@ -12,16 +18,25 @@ export default function ThesesAndPapers({
   expandedItems,
   onToggleExpand,
 }: ThesesAndPapersProps) {
+  useBackgroundAwareColors();
+
   return (
     <section className="mb-16">
-      <h2 className="fade-in text-3xl font-bold mb-8">Theses and papers</h2>
+      <h2
+        className="fade-in text-3xl font-bold mb-8 transition-colors duration-500"
+        style={{
+          color: getTextColor(brightness),
+        }}
+      >
+        Theses and papers
+      </h2>
 
       <div className="space-y-6">
         <article className="section-item">
           <h3
             className="text-xl font-semibold mb-2 transition-colors cursor-pointer duration-300"
             style={{
-              color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+              color: getBlueColor(),
             }}
           >
             <a
@@ -30,7 +45,7 @@ export default function ThesesAndPapers({
               rel="noopener noreferrer"
               className="group transition-colors duration-300 inline-flex items-center gap-2"
               style={{
-                color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+                color: getBlueColor(),
               }}
             >
               Application development based on Vue.js
@@ -40,9 +55,7 @@ export default function ThesesAndPapers({
           <p
             className="text-sm mb-2 transition-colors duration-500"
             style={{
-              color: `rgba(${100 - brightness * 30}, ${
-                100 - brightness * 30
-              }, ${100 - brightness * 30}, 0.7)`,
+              color: getSubtitleColor(brightness),
             }}
           >
             June, 2025
@@ -60,7 +73,7 @@ export default function ThesesAndPapers({
           <h3
             className="text-xl font-semibold mb-2 transition-colors cursor-pointer duration-300"
             style={{
-              color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+              color: getBlueColor(),
             }}
           >
             <a
@@ -69,7 +82,7 @@ export default function ThesesAndPapers({
               rel="noopener noreferrer"
               className="group transition-colors duration-300 inline-flex items-center gap-2"
               style={{
-                color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+                color: getBlueColor(),
               }}
             >
               Industry 4.0 and lean production
@@ -79,9 +92,7 @@ export default function ThesesAndPapers({
           <p
             className="text-sm mb-2 transition-colors duration-500"
             style={{
-              color: `rgba(${100 - brightness * 30}, ${
-                100 - brightness * 30
-              }, ${100 - brightness * 30}, 0.7)`,
+              color: getSubtitleColor(brightness),
             }}
           >
             September, 2024
@@ -99,7 +110,7 @@ export default function ThesesAndPapers({
           <h3
             className="text-xl font-semibold mb-2 transition-colors cursor-pointer duration-300"
             style={{
-              color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+              color: getBlueColor(),
             }}
           >
             <a
@@ -108,7 +119,7 @@ export default function ThesesAndPapers({
               rel="noopener noreferrer"
               className="group transition-colors duration-300 inline-flex items-center gap-2"
               style={{
-                color: `rgba(59, 130, 246, ${0.8 + brightness * 0.2})`,
+                color: getBlueColor(),
               }}
             >
               Face recognition in images using deep learning
@@ -118,9 +129,7 @@ export default function ThesesAndPapers({
           <p
             className="text-sm mb-2 transition-colors duration-500"
             style={{
-              color: `rgba(${100 - brightness * 30}, ${
-                100 - brightness * 30
-              }, ${100 - brightness * 30}, 0.7)`,
+              color: getSubtitleColor(brightness),
             }}
           >
             December, 2023

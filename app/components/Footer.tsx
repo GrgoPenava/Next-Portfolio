@@ -1,26 +1,33 @@
+"use client";
+
 import Image from "next/image";
+import {
+  getTextColor,
+  useBackgroundAwareColors,
+  getIconFilter,
+  getIconOpacity,
+  getFooterBorderColor,
+} from "../utils/colorUtils";
 
 interface FooterProps {
   brightness: number;
 }
 
 export default function Footer({ brightness }: FooterProps) {
+  useBackgroundAwareColors();
+
   return (
     <footer
       className="border-t pt-8 transition-colors duration-500"
       style={{
-        borderColor: `rgba(${150 + brightness * 50}, ${
-          150 + brightness * 50
-        }, ${150 + brightness * 50}, 0.3)`,
+        borderColor: getFooterBorderColor(),
       }}
     >
       <div className="fade-in">
         <p
           className="mb-4 transition-colors duration-500"
           style={{
-            color: `rgba(${80 - brightness * 40}, ${80 - brightness * 40}, ${
-              80 - brightness * 40
-            }, 0.9)`,
+            color: getTextColor(brightness, 0.9),
           }}
         >
           Contact me on:
@@ -35,13 +42,14 @@ export default function Footer({ brightness }: FooterProps) {
             title="LinkedIn"
           >
             <Image
-              src="/linkedin-icon.svg"
+              src="/linkedin.png"
               alt="LinkedIn"
               width={24}
               height={24}
+              className="transition-all duration-300"
               style={{
-                filter: `invert(${1 - brightness})`,
-                opacity: 0.7 + brightness * 0.3,
+                opacity: getIconOpacity(),
+                filter: getIconFilter(),
               }}
             />
           </a>
@@ -54,13 +62,14 @@ export default function Footer({ brightness }: FooterProps) {
             title="GitHub"
           >
             <Image
-              src="/github-icon.svg"
+              src="/github.png"
               alt="GitHub"
               width={24}
               height={24}
+              className="transition-all duration-300"
               style={{
-                filter: `invert(${1 - brightness})`,
-                opacity: 0.7 + brightness * 0.3,
+                filter: getIconFilter(),
+                opacity: getIconOpacity(),
               }}
             />
           </a>
@@ -71,13 +80,14 @@ export default function Footer({ brightness }: FooterProps) {
             title="Email"
           >
             <Image
-              src="/email-icon.svg"
+              src="/email.png"
               alt="Email"
               width={24}
               height={24}
+              className="transition-all duration-300"
               style={{
-                filter: `invert(${1 - brightness})`,
-                opacity: 0.7 + brightness * 0.3,
+                filter: getIconFilter(),
+                opacity: getIconOpacity(),
               }}
             />
           </a>

@@ -135,6 +135,7 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
       gsap.set(ringRef.current, { rotation: initialRotation });
       gsap.set(handleRef.current, { rotation: -initialRotation });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const currentTime = minToTime(currentMinutes);
@@ -146,7 +147,16 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
   return (
     <div className="fixed top-8 left-8 z-50">
       <div className="mb-2 flex justify-center">
-        <div className="text-xs font-mono px-2 py-1 text-center">
+        <div
+          className="text-xs font-mono px-2 py-1 text-center transition-colors duration-500"
+          style={{
+            color: `rgba(${
+              calculateBrightness(currentMinutes) < 0.5 ? 255 : 0
+            }, ${calculateBrightness(currentMinutes) < 0.5 ? 255 : 0}, ${
+              calculateBrightness(currentMinutes) < 0.5 ? 255 : 0
+            }, ${0.9 - calculateBrightness(currentMinutes) * 0.2})`,
+          }}
+        >
           <div>Current time: {currentTime}</div>
           <div>
             Brightness: {Math.round(calculateBrightness(currentMinutes) * 100)}%
