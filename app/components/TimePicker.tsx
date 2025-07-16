@@ -105,6 +105,11 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
     isDragging.current = true;
     e.currentTarget.setPointerCapture(e.pointerId);
 
+    // Prevent scrolling on touch devices during drag
+    e.preventDefault();
+    document.body.style.touchAction = "none";
+    document.body.style.overflow = "hidden";
+
     // Stop demo animations when user starts interacting
     gsap.killTweensOf([
       mobileRingRef.current,
@@ -113,7 +118,6 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
       desktopHandleRef.current,
     ]);
 
-    // Reset scale of handles
     if (mobileHandleRef.current) {
       gsap.set(mobileHandleRef.current, { scale: 1 });
     }
@@ -127,6 +131,9 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
     isMobile: boolean = false
   ) => {
     if (!isDragging.current) return;
+
+    // Prevent scrolling during drag
+    e.preventDefault();
 
     const ringRef = isMobile ? mobileRingRef.current : desktopRingRef.current;
     const handleRef = isMobile
@@ -151,6 +158,10 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
   const handlePointerUp = (e: React.PointerEvent) => {
     isDragging.current = false;
     e.currentTarget.releasePointerCapture(e.pointerId);
+
+    // Restore scrolling after drag ends
+    document.body.style.touchAction = "";
+    document.body.style.overflow = "";
   };
 
   useEffect(() => {
@@ -160,7 +171,6 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
 
     const initialRotation = (actualCurrentMinutes / 1440) * 360;
 
-    // Set initial rotation for both mobile and desktop
     if (mobileRingRef.current && mobileHandleRef.current) {
       gsap.set(mobileRingRef.current, { rotation: initialRotation });
       gsap.set(mobileHandleRef.current, { rotation: -initialRotation });
@@ -171,7 +181,6 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
       gsap.set(desktopHandleRef.current, { rotation: -initialRotation });
     }
 
-    // Demo animation to show interactivity
     const demoAnimation = () => {
       const targets = [mobileRingRef.current, desktopRingRef.current].filter(
         Boolean
@@ -183,14 +192,13 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
 
       targets.forEach((target, index) => {
         if (target && handles[index]) {
-          // Subtle wiggle animation to show it's draggable
           gsap.to(target, {
             rotation: initialRotation + 15,
             duration: 1.5,
             ease: "power2.inOut",
             yoyo: true,
             repeat: 1,
-            delay: 2, // Start after 2 seconds
+            delay: 2,
           });
 
           gsap.to(handles[index], {
@@ -202,7 +210,6 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
             delay: 2,
           });
 
-          // Pulsing scale animation for handle
           gsap.to(handles[index], {
             scale: 1.1,
             duration: 0.8,
@@ -215,10 +222,8 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
       });
     };
 
-    // Run demo animation
     demoAnimation();
 
-    // Cleanup function to kill animations
     return () => {
       gsap.killTweensOf([
         mobileRingRef.current,
@@ -277,6 +282,7 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
             <div
               ref={mobileRingRef}
               className="absolute inset-0 cursor-pointer"
+              style={{ touchAction: "none" }}
               onPointerDown={handlePointerDown}
               onPointerMove={(e) => handlePointerMove(e, true)}
               onPointerUp={handlePointerUp}
@@ -366,6 +372,7 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
           <div
             ref={desktopRingRef}
             className="absolute inset-0 cursor-pointer"
+            style={{ touchAction: "none" }}
             onPointerDown={handlePointerDown}
             onPointerMove={(e) => handlePointerMove(e, false)}
             onPointerUp={handlePointerUp}
