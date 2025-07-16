@@ -89,7 +89,11 @@ export default function Portfolio() {
 
         <Education brightness={brightness} />
 
-        <Projects brightness={brightness} />
+        <Projects
+          brightness={brightness}
+          expandedItems={expandedItems}
+          onToggleExpand={toggleExpand}
+        />
 
         <ThesesAndPapers
           brightness={brightness}
