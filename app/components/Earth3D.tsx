@@ -17,6 +17,7 @@ function EarthModel() {
   const groupRef = useRef<THREE.Group>(null);
   const pathname = usePathname();
   const routeRotationSpeed = useRef(0);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const routeRotationTarget = useRef(0);
 
   const { scene } = useGLTF("/earth.glb");
@@ -60,6 +61,7 @@ function EarthModel() {
   // Listen for route change events
   useEffect(() => {
     const handleRouteChange = (event: CustomEvent) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { duration } = event.detail;
       console.log(
         "🌍 Earth3D received route change event, starting natural rotation"

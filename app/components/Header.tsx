@@ -4,7 +4,7 @@ interface HeaderProps {
   brightness: number;
 }
 
-export default function Header({ brightness }: HeaderProps) {
+export default function Header({ brightness: _brightness }: HeaderProps) {
   return (
     <header className="mb-16">
       <h1 className="fade-in text-5xl md:text-6xl font-bold mb-4 tracking-tight text-white">

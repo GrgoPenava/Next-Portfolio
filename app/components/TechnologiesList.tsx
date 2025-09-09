@@ -12,7 +12,7 @@ interface TechnologiesListProps {
 
 export default function TechnologiesList({
   technologies,
-  brightness,
+  brightness: _brightness,
   showLabel = false,
   className = "",
   style,

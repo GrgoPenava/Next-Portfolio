@@ -12,9 +12,9 @@ if (typeof window !== "undefined") {
 export default function HomePage() {
   useEffect(() => {
     // Refresh ScrollTrigger for Earth3D component
-    setTimeout(() => {
+    setTimeout(async () => {
       if (typeof window !== "undefined") {
-        const { ScrollTrigger } = require("gsap/ScrollTrigger");
+        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
         ScrollTrigger.refresh();
         console.log("ScrollTrigger refreshed on HomePage mount");
       }
