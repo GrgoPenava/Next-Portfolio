@@ -1,10 +1,5 @@
 import ExpandableText from "./ExpandableText";
-import {
-  getSubtitleColor,
-  getTextColor,
-  useBackgroundAwareColors,
-  getBlueColor,
-} from "../utils/colorUtils";
+import LaserCard from "./LaserCard";
 
 interface WorkExperienceProps {
   brightness: number;
@@ -17,56 +12,34 @@ export default function WorkExperience({
   expandedItems,
   onToggleExpand,
 }: WorkExperienceProps) {
-  useBackgroundAwareColors();
-
   return (
     <section className="mb-16">
-      <h2
-        className="fade-in text-3xl font-bold mb-8 transition-colors duration-500"
-        style={{
-          color: getTextColor(brightness),
-        }}
-      >
+      <h2 className="fade-in text-3xl font-bold mb-8 transition-colors duration-500 bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
         Work experience
       </h2>
 
       <div className="space-y-8">
-        <div className="section-item">
+        <LaserCard
+          className="section-item p-6 rounded-lg bg-black/20 border border-purple-500/20 backdrop-blur-sm hover:border-purple-400/30 transition-all duration-300"
+          backgroundImageUrl="/7pay.svg"
+        >
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
             <div>
-              <h3
-                className="text-2xl font-semibold transition-colors duration-500"
-                style={{
-                  color: getTextColor(brightness),
-                }}
-              >
+              <h3 className="text-white text-2xl font-semibold transition-colors duration-500 group-hover:text-purple-300">
                 Software Developer
               </h3>
-              <p
-                className="font-medium transition-colors duration-300"
-                style={{
-                  color: getBlueColor(),
-                }}
-              >
+              <p className="font-medium transition-colors duration-300 text-purple-400">
                 <a
                   href="https://www.7pay.hr/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-colors duration-300"
-                  style={{
-                    color: getBlueColor(),
-                  }}
+                  className="text-purple-400 hover:text-purple-300 transition-colors duration-300"
                 >
                   7 Payments
                 </a>
               </p>
             </div>
-            <span
-              className="text-sm transition-colors duration-500"
-              style={{
-                color: getSubtitleColor(brightness),
-              }}
-            >
+            <span className="text-sm transition-colors duration-500 text-gray-400">
               2024–Now
             </span>
           </div>
@@ -96,44 +69,29 @@ export default function WorkExperience({
               "Maven",
             ]}
           />
-        </div>
+        </LaserCard>
 
-        <div className="section-item">
+        <LaserCard
+          className="section-item p-6 rounded-lg bg-black/20 border border-purple-500/20 backdrop-blur-sm hover:border-purple-400/30 transition-all duration-300"
+          backgroundImageUrl="/sick-mobilisis.svg"
+        >
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
             <div>
-              <h3
-                className="text-2xl font-semibold transition-colors duration-500"
-                style={{
-                  color: getTextColor(brightness),
-                }}
-              >
+              <h3 className="text-2xl font-semibold transition-colors duration-500 text-white group-hover:text-purple-300">
                 Frontend Developer
               </h3>
-              <p
-                className="font-medium transition-colors duration-300"
-                style={{
-                  color: getBlueColor(),
-                }}
-              >
+              <p className="font-medium transition-colors duration-300 text-purple-400">
                 <a
                   href="https://www.mobilisis.hr/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-colors duration-300"
-                  style={{
-                    color: getBlueColor(),
-                  }}
+                  className="text-purple-400 hover:text-purple-300 transition-colors duration-300"
                 >
                   SICK Mobilisis
                 </a>
               </p>
             </div>
-            <span
-              className="text-sm transition-colors duration-500"
-              style={{
-                color: getSubtitleColor(brightness),
-              }}
-            >
+            <span className="text-sm transition-colors duration-500 text-gray-400">
               2023-2024
             </span>
           </div>
@@ -160,7 +118,7 @@ export default function WorkExperience({
               "WebSocket",
             ]}
           />
-        </div>
+        </LaserCard>
       </div>
     </section>
   );

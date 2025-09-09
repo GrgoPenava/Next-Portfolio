@@ -1,62 +1,74 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import TimePicker from "./components/TimePicker";
-import Header from "./components/Header";
-import WorkExperience from "./components/WorkExperience";
-import Education from "./components/Education";
-import Projects from "./components/Projects";
-import ThesesAndPapers from "./components/ThesesAndPapers";
-import Footer from "./components/Footer";
+import Link from "next/link";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-export default function Portfolio() {
-  const [brightness, setBrightness] = useState(1);
-  const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>(
-    {}
-  );
-
-  const toggleExpand = (itemId: string) => {
-    setExpandedItems((prev) => ({ ...prev, [itemId]: !prev[itemId] }));
-  };
-
+export default function HomePage() {
   useEffect(() => {
+    // Refresh ScrollTrigger for Earth3D component
+    setTimeout(() => {
+      if (typeof window !== "undefined") {
+        const { ScrollTrigger } = require("gsap/ScrollTrigger");
+        ScrollTrigger.refresh();
+        console.log("ScrollTrigger refreshed on HomePage mount");
+      }
+    }, 200);
+
     const ctx = gsap.context(() => {
+      // Hero animation
       gsap.fromTo(
-        ".fade-in",
+        ".hero-title",
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          delay: 0.5,
+        }
+      );
+
+      gsap.fromTo(
+        ".hero-subtitle",
         { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          stagger: 0.1,
           ease: "power3.out",
-          delay: 0.2,
+          delay: 0.8,
         }
       );
 
-      (gsap.utils.toArray(".section-item") as Element[]).forEach((item) => {
-        gsap.fromTo(
-          item,
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: item,
-              start: "top 85%",
-              end: "bottom 15%",
-            },
-          }
-        );
-      });
+      gsap.fromTo(
+        ".hero-description",
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          delay: 1.1,
+        }
+      );
+
+      gsap.fromTo(
+        ".cv-button",
+        { opacity: 0, scale: 0.8 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.6,
+          ease: "back.out(1.7)",
+          delay: 1.4,
+        }
+      );
     });
 
     return () => {
@@ -64,44 +76,27 @@ export default function Portfolio() {
     };
   }, []);
 
-  const handleTimeChange = (newBrightness: number) => {
-    setBrightness(newBrightness);
-  };
-
   return (
-    <div
-      className="min-h-screen transition-colors duration-500 overflow-x-hidden"
-      style={{
-        backgroundColor: "var(--time-bg-light, #ffffff)",
-        color: "var(--time-text-light, #111111)",
-      }}
-    >
-      <TimePicker onTimeChange={handleTimeChange} />
+    <div className="relative min-h-screen flex items-center justify-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+        <h1 className="hero-title text-6xl font-bold text-white mb-6">
+          Dobrodošli!
+        </h1>
 
-      <div className="max-w-4xl mx-auto px-6 py-16">
-        <Header brightness={brightness} />
+        <p className="hero-subtitle text-2xl text-gray-300 mb-8">
+          Ja sam Grgo Penava
+        </p>
 
-        <WorkExperience
-          brightness={brightness}
-          expandedItems={expandedItems}
-          onToggleExpand={toggleExpand}
-        />
+        <p className="hero-description text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
+          Dobrodošli na moj portfolio sajt. Ovde možete saznati više o mojoj
+          karijeri, projektima i iskustvu kroz moj detaljni CV.
+        </p>
 
-        <Education brightness={brightness} />
-
-        <Projects
-          brightness={brightness}
-          expandedItems={expandedItems}
-          onToggleExpand={toggleExpand}
-        />
-
-        <ThesesAndPapers
-          brightness={brightness}
-          expandedItems={expandedItems}
-          onToggleExpand={toggleExpand}
-        />
-
-        <Footer brightness={brightness} />
+        <Link href="/cv">
+          <button className="cv-button bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-4 px-8 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+            Pogledajte moj CV
+          </button>
+        </Link>
       </div>
     </div>
   );

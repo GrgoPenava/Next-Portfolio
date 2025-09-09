@@ -1,12 +1,6 @@
 "use client";
 
 import { CSSProperties } from "react";
-import {
-  getTextColor,
-  useBackgroundAwareColors,
-  getBlueLabelColor,
-  getBlueBorderColor,
-} from "../utils/colorUtils";
 
 interface TechnologiesListProps {
   technologies: string[];
@@ -23,8 +17,6 @@ export default function TechnologiesList({
   className = "",
   style,
 }: TechnologiesListProps) {
-  useBackgroundAwareColors();
-
   if (!technologies || technologies.length === 0) {
     return null;
   }
@@ -32,10 +24,7 @@ export default function TechnologiesList({
   return (
     <div className={className} style={style}>
       {showLabel && (
-        <p
-          className="text-sm font-medium mb-2"
-          style={{ color: getBlueLabelColor() }}
-        >
+        <p className="text-sm font-medium mb-2 text-purple-300">
           Technologies used:
         </p>
       )}
@@ -43,12 +32,7 @@ export default function TechnologiesList({
         {technologies.map((tech, index) => (
           <span
             key={index}
-            className="px-2 py-1 text-xs font-medium rounded-md bg-opacity-20"
-            style={{
-              backgroundColor: `rgba(59, 130, 246, 0.1)`,
-              color: getTextColor(brightness, 0.8),
-              border: `1px solid ${getBlueBorderColor()}`,
-            }}
+            className="px-2 py-1 text-xs font-medium rounded-md bg-purple-500/10 text-gray-300 border border-purple-400/30"
           >
             {tech.trim()}
           </span>

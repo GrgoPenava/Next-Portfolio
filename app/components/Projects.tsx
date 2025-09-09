@@ -1,11 +1,6 @@
 import ExpandableText from "./ExpandableText";
 import ExternalLinkIcon from "./ExternalLinkIcon";
-import {
-  getSubtitleColor,
-  getTextColor,
-  useBackgroundAwareColors,
-  getBlueColor,
-} from "../utils/colorUtils";
+import LaserCard from "./LaserCard";
 
 interface ProjectsProps {
   brightness: number;
@@ -18,41 +13,29 @@ export default function Projects({
   expandedItems,
   onToggleExpand,
 }: ProjectsProps) {
-  useBackgroundAwareColors();
-
   return (
     <section className="mb-16">
-      <h2
-        className="fade-in text-3xl font-bold mb-8 transition-colors duration-500"
-        style={{
-          color: getTextColor(brightness),
-        }}
-      >
+      <h2 className="fade-in text-3xl font-bold mb-8 transition-colors duration-500 bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
         Projects
       </h2>
 
       <div className="space-y-8">
-        <div className="section-item">
+        <LaserCard
+          className="section-item p-6 rounded-lg bg-black/20 border border-purple-500/20 backdrop-blur-sm hover:border-purple-400/30 transition-all duration-300"
+          backgroundImageUrl="/tasky.svg"
+        >
           <h3 className="text-xl font-semibold mb-2">
             <a
               href="https://github.com/GrgoPenava/tasky-frontend"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-2"
-              style={{
-                color: getBlueColor(),
-              }}
+              className="group transition-colors duration-300 inline-flex items-center gap-2 text-purple-400 group-hover:text-purple-300"
             >
               Tasky Web Application
               <ExternalLinkIcon size={16} />
             </a>
           </h3>
-          <p
-            className="text-sm mb-2 transition-colors duration-500"
-            style={{
-              color: getSubtitleColor(brightness),
-            }}
-          >
+          <p className="text-sm mb-2 transition-colors duration-500 text-gray-400">
             Master&apos;s Thesis Project
           </p>
           <ExpandableText
@@ -93,10 +76,7 @@ export default function Projects({
               href="https://github.com/GrgoPenava/tasky-frontend"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-1"
-              style={{
-                color: getBlueColor(),
-              }}
+              className="group transition-colors duration-300 inline-flex items-center gap-1 text-purple-400"
             >
               Frontend
               <ExternalLinkIcon size={12} />
@@ -105,10 +85,7 @@ export default function Projects({
               href="https://github.com/GrgoPenava/tasky-backend"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-1"
-              style={{
-                color: getBlueColor(),
-              }}
+              className="group transition-colors duration-300 inline-flex items-center gap-1 text-purple-400"
             >
               Backend
               <ExternalLinkIcon size={12} />
@@ -117,38 +94,30 @@ export default function Projects({
               href="https://github.com/GrgoPenava/Master-s-thesis"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-1"
-              style={{
-                color: getBlueColor(),
-              }}
+              className="group transition-colors duration-300 inline-flex items-center gap-1 text-purple-400"
             >
               Thesis
               <ExternalLinkIcon size={12} />
             </a>
           </div>
-        </div>
+        </LaserCard>
 
-        <div className="section-item">
+        <LaserCard
+          className="section-item p-6 rounded-lg bg-black/20 border border-purple-500/20 backdrop-blur-sm hover:border-purple-400/30 transition-all duration-300"
+          backgroundImageUrl="/gp-logo.svg"
+        >
           <h3 className="text-xl font-semibold mb-2">
             <a
               href="https://github.com/GrgoPenava/Next-Portfolio"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-2"
-              style={{
-                color: getBlueColor(),
-              }}
+              className="group transition-colors duration-300 inline-flex items-center gap-2 text-purple-400 group-hover:text-purple-300"
             >
               Personal Portfolio Website
               <ExternalLinkIcon size={16} />
             </a>
           </h3>
-          <p
-            className="text-sm mb-2 transition-colors duration-500"
-            style={{
-              color: getSubtitleColor(brightness),
-            }}
-          >
+          <p className="text-sm mb-2 transition-colors duration-500 text-gray-400">
             Personal Project
           </p>
           <ExpandableText
@@ -174,29 +143,21 @@ export default function Projects({
               "Three.js",
             ]}
           />
-        </div>
+        </LaserCard>
 
-        <div className="section-item">
+        <div className="section-item p-6 rounded-lg bg-black/20 border border-purple-500/20 backdrop-blur-sm hover:border-purple-400/30 transition-all duration-300">
           <h3 className="text-xl font-semibold mb-2">
             <a
               href="https://github.com/GrgoPenava/VsCodeProfiles-Nuxt"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-2"
-              style={{
-                color: getBlueColor(),
-              }}
+              className="group transition-colors duration-300 inline-flex items-center gap-2 text-purple-400"
             >
               VS Code Profiles Platform
               <ExternalLinkIcon size={16} />
             </a>
           </h3>
-          <p
-            className="text-sm mb-2 transition-colors duration-500"
-            style={{
-              color: getSubtitleColor(brightness),
-            }}
-          >
+          <p className="text-sm mb-2 transition-colors duration-500 text-gray-400">
             Personal Project
           </p>
           <ExpandableText
@@ -233,27 +194,19 @@ export default function Projects({
           />
         </div>
 
-        <div className="section-item">
+        <div className="section-item p-6 rounded-lg bg-black/20 border border-purple-500/20 backdrop-blur-sm hover:border-purple-400/30 transition-all duration-300">
           <h3 className="text-xl font-semibold mb-2">
             <a
               href="https://github.com/orgs/TechTitans-AiR/repositories"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-2"
-              style={{
-                color: getBlueColor(),
-              }}
+              className="group transition-colors duration-300 inline-flex items-center gap-2 text-purple-400"
             >
               FinTech Application
               <ExternalLinkIcon size={16} />
             </a>
           </h3>
-          <p
-            className="text-sm mb-2 transition-colors duration-500"
-            style={{
-              color: getSubtitleColor(brightness),
-            }}
-          >
+          <p className="text-sm mb-2 transition-colors duration-500 text-gray-400">
             Work-based Learning Project
           </p>
           <ExpandableText
@@ -287,27 +240,19 @@ export default function Projects({
           />
         </div>
 
-        <div className="section-item">
+        <div className="section-item p-6 rounded-lg bg-black/20 border border-purple-500/20 backdrop-blur-sm hover:border-purple-400/30 transition-all duration-300">
           <h3 className="text-xl font-semibold mb-2">
             <a
               href="https://github.com/foivz/pi22-nzagorsca-iercegova-gpenava-dmilanovi.git"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-2"
-              style={{
-                color: getBlueColor(),
-              }}
+              className="group transition-colors duration-300 inline-flex items-center gap-2 text-purple-400"
             >
               Parking Management System
               <ExternalLinkIcon size={16} />
             </a>
           </h3>
-          <p
-            className="text-sm mb-2 transition-colors duration-500"
-            style={{
-              color: getSubtitleColor(brightness),
-            }}
-          >
+          <p className="text-sm mb-2 transition-colors duration-500 text-gray-400">
             Work-based Learning Project
           </p>
           <ExpandableText
@@ -341,10 +286,7 @@ export default function Projects({
               href="https://www.foi.unizg.hr/hr/novosti/predstavljanje-studentskih-wbl-projekata-foi-i-mobilisis"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-1"
-              style={{
-                color: getBlueColor(),
-              }}
+              className="group transition-colors duration-300 inline-flex items-center gap-1 text-purple-400"
             >
               Project Presentation
               <ExternalLinkIcon size={12} />
