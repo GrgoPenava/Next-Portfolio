@@ -1,11 +1,5 @@
 import ExpandableText from "./ExpandableText";
 import ExternalLinkIcon from "./ExternalLinkIcon";
-import {
-  getSubtitleColor,
-  getTextColor,
-  useBackgroundAwareColors,
-  getBlueColor,
-} from "../utils/colorUtils";
 
 interface ThesesAndPapersProps {
   brightness: number;
@@ -18,46 +12,26 @@ export default function ThesesAndPapers({
   expandedItems,
   onToggleExpand,
 }: ThesesAndPapersProps) {
-  useBackgroundAwareColors();
-
   return (
     <section className="mb-16">
-      <h2
-        className="fade-in text-3xl font-bold mb-8 transition-colors duration-500"
-        style={{
-          color: getTextColor(brightness),
-        }}
-      >
+      <h2 className="fade-in text-3xl font-bold mb-8 transition-colors duration-500 bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
         Theses and papers
       </h2>
 
       <div className="space-y-6">
-        <article className="section-item">
-          <h3
-            className="text-xl font-semibold mb-2 transition-colors cursor-pointer duration-300"
-            style={{
-              color: getBlueColor(),
-            }}
-          >
+        <article className="section-item p-6 rounded-lg bg-black/20 border border-purple-500/20 backdrop-blur-sm hover:border-purple-400/30 transition-all duration-300">
+          <h3 className="text-xl font-semibold mb-2 transition-colors cursor-pointer duration-300">
             <a
               href="https://github.com/GrgoPenava/Masters-thesis"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-2"
-              style={{
-                color: getBlueColor(),
-              }}
+              className="group transition-colors duration-300 inline-flex items-center gap-2 text-purple-400"
             >
               Application development based on Vue.js
               <ExternalLinkIcon size={16} />
             </a>
           </h3>
-          <p
-            className="text-sm mb-2 transition-colors duration-500"
-            style={{
-              color: getSubtitleColor(brightness),
-            }}
-          >
+          <p className="text-sm mb-2 transition-colors duration-500 text-gray-400">
             June, 2025
           </p>
           <ExpandableText
@@ -69,32 +43,19 @@ export default function ThesesAndPapers({
           />
         </article>
 
-        <article className="section-item">
-          <h3
-            className="text-xl font-semibold mb-2 transition-colors cursor-pointer duration-300"
-            style={{
-              color: getBlueColor(),
-            }}
-          >
+        <article className="section-item p-6 rounded-lg bg-black/20 border border-purple-500/20 backdrop-blur-sm hover:border-purple-400/30 transition-all duration-300">
+          <h3 className="text-xl font-semibold mb-2 transition-colors cursor-pointer duration-300">
             <a
               href="https://github.com/GrgoPenava/Bachelors-thesis"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-2"
-              style={{
-                color: getBlueColor(),
-              }}
+              className="group transition-colors duration-300 inline-flex items-center gap-2 text-purple-400"
             >
               Industry 4.0 and lean production
               <ExternalLinkIcon size={16} />
             </a>
           </h3>
-          <p
-            className="text-sm mb-2 transition-colors duration-500"
-            style={{
-              color: getSubtitleColor(brightness),
-            }}
-          >
+          <p className="text-sm mb-2 transition-colors duration-500 text-gray-400">
             September, 2024
           </p>
           <ExpandableText
@@ -106,32 +67,19 @@ export default function ThesesAndPapers({
           />
         </article>
 
-        <article className="section-item">
-          <h3
-            className="text-xl font-semibold mb-2 transition-colors cursor-pointer duration-300"
-            style={{
-              color: getBlueColor(),
-            }}
-          >
+        <article className="section-item p-6 rounded-lg bg-black/20 border border-purple-500/20 backdrop-blur-sm hover:border-purple-400/30 transition-all duration-300">
+          <h3 className="text-xl font-semibold mb-2 transition-colors cursor-pointer duration-300">
             <a
               href="https://github.com/GrgoPenava/face-recognition"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-2"
-              style={{
-                color: getBlueColor(),
-              }}
+              className="group transition-colors duration-300 inline-flex items-center gap-2 text-purple-400"
             >
               Face recognition in images using deep learning
               <ExternalLinkIcon size={16} />
             </a>
           </h3>
-          <p
-            className="text-sm mb-2 transition-colors duration-500"
-            style={{
-              color: getSubtitleColor(brightness),
-            }}
-          >
+          <p className="text-sm mb-2 transition-colors duration-500 text-gray-400">
             December, 2023
           </p>
           <ExpandableText

@@ -3,12 +3,6 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import TechnologiesList from "./TechnologiesList";
-import {
-  getTextColor,
-  getBorderColor,
-  useBackgroundAwareColors,
-  getBlueColor,
-} from "../utils/colorUtils";
 
 interface ExpandableTextProps {
   text: string;
@@ -29,8 +23,6 @@ export default function ExpandableText({
   technologies,
   bulletPoints,
 }: ExpandableTextProps) {
-  useBackgroundAwareColors();
-
   const expandableContentRef = useRef<HTMLDivElement>(null);
   const isExpanded = expandedItems[itemId];
 
@@ -83,12 +75,7 @@ export default function ExpandableText({
 
   return (
     <div>
-      <div
-        className="transition-colors duration-500"
-        style={{
-          color: getTextColor(brightness, 0.9),
-        }}
-      >
+      <div className="transition-colors duration-500 text-gray-300">
         <p className="leading-relaxed">{text}</p>
 
         <div
@@ -104,7 +91,9 @@ export default function ExpandableText({
               <ul className="space-y-2 ml-4">
                 {bulletPoints.map((point, index) => (
                   <li key={index} className="flex items-start">
-                    <span className="mr-3 mt-1 text-blue-400 font-bold">•</span>
+                    <span className="mr-3 mt-1 text-purple-400 font-bold">
+                      •
+                    </span>
                     <span className="leading-relaxed">{point}</span>
                   </li>
                 ))}
@@ -115,10 +104,7 @@ export default function ExpandableText({
               technologies={technologies || []}
               brightness={brightness}
               showLabel={true}
-              className="mt-4 pt-3 border-t border-opacity-20"
-              style={{
-                borderColor: getBorderColor(),
-              }}
+              className="mt-4 pt-3 border-t border-opacity-20 border-gray-600"
             />
           </div>
         </div>
@@ -127,10 +113,7 @@ export default function ExpandableText({
       {hasAdditionalContent && (
         <button
           onClick={() => onToggle(itemId)}
-          className="mt-3 text-sm font-medium transition-colors duration-300 hover:opacity-80"
-          style={{
-            color: getBlueColor(),
-          }}
+          className="mt-3 text-sm font-medium transition-colors duration-300 hover:opacity-80 text-purple-400 hover:text-purple-300"
         >
           {isExpanded ? "Read less" : "Read more"}
         </button>

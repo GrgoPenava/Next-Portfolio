@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
+import { usePathname } from "next/navigation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from "three";
@@ -14,6 +15,10 @@ if (typeof window !== "undefined") {
 function EarthModel() {
   const meshRef = useRef<THREE.Group>(null);
   const groupRef = useRef<THREE.Group>(null);
+  const pathname = usePathname();
+  const routeRotationSpeed = useRef(0);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const routeRotationTarget = useRef(0);
 
   const { scene } = useGLTF("/earth.glb");
 
@@ -21,6 +26,8 @@ function EarthModel() {
 
   useEffect(() => {
     if (!groupRef.current) return;
+
+    console.log("🌍 Setting up ScrollTrigger for Earth3D on:", pathname);
 
     const ctx = gsap.context(() => {
       gsap.to(groupRef.current!.rotation, {
@@ -31,16 +38,70 @@ function EarthModel() {
           start: "top top",
           end: "bottom bottom",
           scrub: 1,
+          id: "earth-scroll-rotation",
+          onUpdate: () => {
+            console.log("📜 ScrollTrigger updating Earth rotation");
+          },
         },
       });
     });
 
-    return () => ctx.revert();
+    // Refresh ScrollTrigger after setup
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+      console.log("🔄 ScrollTrigger refreshed for Earth3D");
+    }, 100);
+
+    return () => {
+      console.log("🧹 Cleaning up Earth3D ScrollTrigger");
+      ctx.revert();
+    };
+  }, [pathname]); // Depend on pathname to re-setup on route changes
+
+  // Listen for route change events
+  useEffect(() => {
+    const handleRouteChange = (event: CustomEvent) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { duration } = event.detail;
+      console.log(
+        "🌍 Earth3D received route change event, starting natural rotation"
+      );
+
+      // Set initial rotation speed (higher = faster rotation)
+      routeRotationSpeed.current = 20.0; // Adjust this value to control rotation speed
+    };
+
+    window.addEventListener(
+      "earthRouteChange",
+      handleRouteChange as EventListener
+    );
+
+    return () => {
+      window.removeEventListener(
+        "earthRouteChange",
+        handleRouteChange as EventListener
+      );
+    };
   }, []);
 
   useFrame((state, delta) => {
     if (meshRef.current) {
+      // Normal continuous rotation
       meshRef.current.rotation.y += delta * 0.25;
+
+      // Add route change rotation if active
+      if (routeRotationSpeed.current > 0) {
+        meshRef.current.rotation.y += routeRotationSpeed.current * delta;
+
+        // Decrease rotation speed over time (natural deceleration)
+        routeRotationSpeed.current *= 0.95; // Gradual slowdown
+
+        // Stop when speed is very low
+        if (routeRotationSpeed.current < 0.1) {
+          routeRotationSpeed.current = 0;
+          console.log("✅ Natural Earth rotation animation completed");
+        }
+      }
     }
   });
 
