@@ -1,0 +1,17 @@
+# layout.tsx
+izbaci cijeli <EarthWidget /> <DotGrid /> itd.
+- layout.tsx bi trebao imati metadata fontove i wrappere/context 
+- napravi (landing) folder i prebaci taj layout tamo 
+- u taj landing folder ti stoje svi pagevi za landing, tj svi pagevi kojima zelis da imaju taj layout znaci homepage / i /cv page
+
+# imas dva components foldera
+- best pratice je da ovaj vanjski components folder sadrzava sve komponente koje se shareaju tipa buttoni, header itd
+- onda jos jedan best pratice je koristiti _components foldere
+/cv
+  _components
+    componente za /cv page samo
+  page.tsx
+
+# page.tsx best pratice je da bude server componenta a onda napravis client page komponentu
+
+# svaka client componenta treba imati 'use-client' on top, ima nekih koje nemaju
