@@ -66,9 +66,9 @@ export default function HomePage() {
       gsap.set(".bento-card", {
         opacity: 0,
         scale: 0.4,
-        rotation: (i) => gsap.utils.random(-20, 20),
-        y: (i) => gsap.utils.random(50, 100),
-        x: (i) => gsap.utils.random(-30, 30),
+        rotation: (_i) => gsap.utils.random(-20, 20),
+        y: (_i) => gsap.utils.random(50, 100),
+        x: (_i) => gsap.utils.random(-30, 30),
       });
 
       // Create main timeline

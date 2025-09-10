@@ -2,7 +2,16 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { techLogos } from "../data/techLogos";
 
-const LogoLoop: any = dynamic(
+const LogoLoop: React.ComponentType<{
+  logos: Array<{ node: React.ReactNode; title: string }>;
+  speed?: number;
+  direction?: "left" | "right";
+  logoHeight?: number;
+  gap?: number;
+  pauseOnHover?: boolean;
+  fadeOut?: boolean;
+  className?: string;
+}> = dynamic(
   () =>
     import("../../components/LogoLoop").then((mod) => ({
       default: mod.LogoLoop,

@@ -98,7 +98,7 @@ export const EducationCard: React.FC = () => {
           </div>
           <div>
             <p className="font-semibold text-white group-hover:text-green-200 transition-colors text-sm">
-              Master's Degree
+              Master&apos;s Degree
             </p>
             <p className="text-xs text-gray-400">
               FOI, University of Zagreb • 2023 - 2025
@@ -118,7 +118,7 @@ export const EducationCard: React.FC = () => {
           </div>
           <div>
             <p className="font-semibold text-white group-hover:text-blue-200 transition-colors text-sm">
-              Bachelor's Degree
+              Bachelor&apos;s Degree
             </p>
             <p className="text-xs text-gray-400">
               FOI, University of Zagreb • 2019 - 2023
