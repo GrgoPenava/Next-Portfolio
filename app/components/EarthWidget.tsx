@@ -16,19 +16,32 @@ export default function EarthWidget() {
     return now.getHours() * 60 + now.getMinutes();
   };
 
+  const getCurrentTimeString = () => {
+    const now = new Date();
+    return now.toLocaleTimeString("en-US", {
+      hour12: false,
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
   const [currentMinutes, setCurrentMinutes] = useState(0);
+  const [currentTimeString, setCurrentTimeString] = useState("00:00");
   const [isClient, setIsClient] = useState(false);
   const pathname = usePathname();
   const prevPathnameRef = useRef<string | null>(null);
   const earthRef = useRef<HTMLDivElement>(null);
   const earthRefMobile = useRef<HTMLDivElement>(null);
+  const timeUpdateIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const sunriseIcon = 420;
-  const sunsetIcon = 1200;
+  const sunriseIcon = 420; // 7:00 AM
+  const sunsetIcon = 1200; // 8:00 PM
   const isDay = currentMinutes >= sunriseIcon && currentMinutes < sunsetIcon;
 
-  // Calculate rotation based on current time
-  const rotation = (currentMinutes / 1440) * 360;
+  // Calculate rotation for analog clock (12:00 = 0°/top, 3:00 = 90°/right, 6:00 = 180°/bottom, 9:00 = 270°/left)
+  // Convert 24h to 12h format for clock display
+  const clockMinutes = currentMinutes % 720; // 720 minutes = 12 hours
+  const rotation = (clockMinutes / 720) * 360;
 
   // Add route change animation and refresh ScrollTrigger
   useEffect(() => {
@@ -104,10 +117,38 @@ export default function EarthWidget() {
     }
   }, [pathname, isClient]);
 
-  // Initialize client-side values on mount
+  // Initialize client-side values on mount and set up time updates
   useEffect(() => {
     setIsClient(true);
-    setCurrentMinutes(getCurrentTimeInMinutes());
+    const updateTime = () => {
+      const newMinutes = getCurrentTimeInMinutes();
+      const newTimeString = getCurrentTimeString();
+
+      // Only update if time actually changed to avoid unnecessary re-renders
+      setCurrentMinutes((prev) => {
+        if (prev !== newMinutes) {
+          // No need to animate Earth rotation - only sun/moon moves via CSS rotation
+          return newMinutes;
+        }
+        return prev;
+      });
+
+      setCurrentTimeString((prev) =>
+        prev !== newTimeString ? newTimeString : prev
+      );
+    };
+
+    // Initial update
+    updateTime();
+
+    // Update every second
+    timeUpdateIntervalRef.current = setInterval(updateTime, 1000);
+
+    return () => {
+      if (timeUpdateIntervalRef.current) {
+        clearInterval(timeUpdateIntervalRef.current);
+      }
+    };
   }, []);
 
   // Set initial pathname when component becomes client-side
@@ -156,6 +197,10 @@ export default function EarthWidget() {
         {/* Mobile placeholder */}
         <div className="block xl:hidden w-full py-6 z-[60] relative">
           <div className="flex flex-col items-center">
+            {/* Time placeholder */}
+            <div className="mb-2">
+              <div className="w-8 h-4 bg-gray-700 rounded animate-pulse"></div>
+            </div>
             <div className="w-28 h-28 relative">
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <div className="w-24 h-24 rounded-full bg-gray-800 animate-pulse" />
@@ -166,6 +211,10 @@ export default function EarthWidget() {
 
         {/* Desktop placeholder */}
         <div className="hidden xl:block fixed top-8 left-8 z-[60]">
+          {/* Time placeholder */}
+          <div className="mb-2 text-center">
+            <div className="w-6 h-3 bg-gray-700 rounded animate-pulse mx-auto"></div>
+          </div>
           <div className="w-24 h-24 relative mx-auto">
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="w-20 h-20 rounded-full bg-gray-800 animate-pulse" />
@@ -181,6 +230,12 @@ export default function EarthWidget() {
       {/* Mobile layout - centered at top */}
       <div className="block xl:hidden w-full py-6 z-[60] relative">
         <div className="flex flex-col items-center">
+          {/* Time display */}
+          <div className="mb-4" suppressHydrationWarning>
+            <span className="text-sm font-mono text-gray-400 tracking-wider">
+              {currentTimeString}
+            </span>
+          </div>
           <div className="w-28 h-28 relative">
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div
@@ -191,15 +246,16 @@ export default function EarthWidget() {
               </div>
             </div>
 
-            {/* Static sun/moon - no drag functionality */}
+            {/* Sun/moon as clock hand - positioned like analog clock */}
             <div
               className="absolute inset-0"
               style={{ transform: `rotate(${rotation}deg)` }}
+              suppressHydrationWarning
             >
               <div
                 className="absolute flex items-center justify-center pointer-events-none"
                 style={{
-                  top: "-20px",
+                  top: "-20px", // Closer to Earth
                   left: "50%",
                   transform: `translateX(-50%) rotate(-${rotation}deg)`,
                 }}
@@ -233,6 +289,12 @@ export default function EarthWidget() {
 
       {/* Desktop layout - fixed position top-left */}
       <div className="hidden xl:block fixed top-8 left-8 z-[60]">
+        {/* Time display */}
+        <div className="mb-3 text-center" suppressHydrationWarning>
+          <span className="text-xs font-mono text-gray-400 tracking-wider">
+            {currentTimeString}
+          </span>
+        </div>
         <div className="w-24 h-24 relative mx-auto">
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div
@@ -247,11 +309,12 @@ export default function EarthWidget() {
           <div
             className="absolute inset-0"
             style={{ transform: `rotate(${rotation}deg)` }}
+            suppressHydrationWarning
           >
             <div
               className="absolute flex items-center justify-center pointer-events-none"
               style={{
-                top: "-18px",
+                top: "-18px", // Closer to Earth
                 left: "50%",
                 transform: `translateX(-50%) rotate(-${rotation}deg)`,
               }}
