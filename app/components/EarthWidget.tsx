@@ -228,10 +228,10 @@ export default function EarthWidget() {
   return (
     <>
       {/* Mobile layout - centered at top */}
-      <div className="block xl:hidden w-full py-6 z-[60] relative">
+      <div className="block xl:hidden w-full py-2 sm:py-4 md:py-6 z-[60] relative">
         <div className="flex flex-col items-center">
           {/* Time display */}
-          <div className="mb-4" suppressHydrationWarning>
+          <div className="mb-1 sm:mb-2 md:mb-4" suppressHydrationWarning>
             <span className="text-sm font-mono text-gray-400 tracking-wider">
               {currentTimeString}
             </span>

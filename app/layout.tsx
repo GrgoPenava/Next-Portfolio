@@ -6,6 +6,7 @@ import DotGrid from "../components/DotGrid";
 import Dock from "../components/Dock";
 import { dockItems } from "./components/DockItems";
 import Icon from "./components/Icon";
+import ClientLayout from "../app/components/ClientLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -51,14 +52,20 @@ export const metadata: Metadata = {
   icons: [
     {
       rel: "icon",
-      url: "/favicon-16.svg",
-      sizes: "16x16",
+      url: "/gp-logo.svg",
+      sizes: "any",
       type: "image/svg+xml",
     },
     {
       rel: "icon",
-      url: "/favicon-gp.svg",
+      url: "/gp-logo.svg",
       sizes: "32x32",
+      type: "image/svg+xml",
+    },
+    {
+      rel: "icon",
+      url: "/gp-logo.svg",
+      sizes: "16x16",
       type: "image/svg+xml",
     },
     {
@@ -77,60 +84,86 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <link rel="icon" href="/gp-logo.svg" type="image/svg+xml" sizes="any" />
         <link
           rel="icon"
-          href="/favicon-16.svg"
-          type="image/svg+xml"
-          sizes="16x16"
-        />
-        <link
-          rel="icon"
-          href="/favicon-gp.svg"
+          href="/gp-logo.svg"
           type="image/svg+xml"
           sizes="32x32"
         />
-        <link rel="shortcut icon" href="/favicon-16.svg" />
+        <link
+          rel="icon"
+          href="/gp-logo.svg"
+          type="image/svg+xml"
+          sizes="16x16"
+        />
+        <link rel="shortcut icon" href="/gp-logo.svg" />
+        <link rel="apple-touch-icon" href="/gp-logo.svg" />
+        <link rel="manifest" href="/manifest.json" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#060010" />
+
+        {/* Preload critical resources */}
+        <link
+          rel="preload"
+          href="/earth.glb"
+          as="fetch"
+          crossOrigin="anonymous"
+        />
+        <link rel="preload" href="/earthTexture.png" as="image" />
+        <link rel="preload" href="/grgo_v1_nobg.png" as="image" />
+        <link rel="preload" href="/gp-logo.svg" as="image" />
+        <link rel="preload" href="/icons/github.svg" as="image" />
+        <link rel="preload" href="/icons/linkedin.svg" as="image" />
+        <link rel="preload" href="/icons/email.svg" as="image" />
+        <link rel="preload" href="/icons/cv.svg" as="image" />
+        <link rel="preload" href="/icons/home.svg" as="image" />
+        <link rel="preload" href="/icons/location.svg" as="image" />
+        <link rel="preload" href="/icons/building.svg" as="image" />
+        <link rel="preload" href="/icons/graduation-cap.svg" as="image" />
+        <link rel="preload" href="/icons/badge.svg" as="image" />
+        <link rel="preload" href="/icons/monitor.svg" as="image" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#060010] text-white`}
         suppressHydrationWarning
       >
-        <DotGrid
-          dotSize={5}
-          gap={15}
-          baseColor="#271E37"
-          activeColor="#5227FF"
-          proximity={120}
-          shockRadius={250}
-          shockStrength={5}
-          resistance={750}
-          returnDuration={1.5}
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            zIndex: 1,
-          }}
-        />
-        <EarthWidget />
-        {children}
-        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50">
-          <Dock
-            items={dockItems.map((item) => ({
-              ...item,
-              icon: <Icon name={item.iconName} className="w-6 h-6" />,
-            }))}
-            className="backdrop-blur-md bg-black/20 border border-white/10 rounded-2xl"
-            magnification={80}
-            distance={150}
-            baseItemSize={50}
-            panelHeight={68}
+        <ClientLayout>
+          <DotGrid
+            dotSize={5}
+            gap={15}
+            baseColor="#271E37"
+            activeColor="#5227FF"
+            proximity={120}
+            shockRadius={250}
+            shockStrength={5}
+            resistance={750}
+            returnDuration={1.5}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              zIndex: 1,
+            }}
           />
-        </div>
+          <EarthWidget />
+          {children}
+          <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50">
+            <Dock
+              items={dockItems.map((item) => ({
+                ...item,
+                icon: <Icon name={item.iconName} className="w-6 h-6" />,
+              }))}
+              className="backdrop-blur-md bg-black/20 border border-white/10 rounded-2xl"
+              magnification={80}
+              distance={150}
+              baseItemSize={50}
+              panelHeight={68}
+            />
+          </div>
+        </ClientLayout>
       </body>
     </html>
   );

@@ -1,0 +1,31 @@
+{
+  "name": "Grgo Penava Portfolio",
+  "short_name": "GP Portfolio",
+  "description": "Portfolio website showcasing my work, education, and projects",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#060010",
+  "theme_color": "#060010",
+  "icons": [
+    {
+      "src": "/gp-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/gp-logo.svg",
+      "sizes": "32x32",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/gp-logo.svg",
+      "sizes": "16x16",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/gp-logo.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml"
+    }
+  ]
+}
