@@ -11,6 +11,7 @@ export function useResourceLoader(options: ResourceLoaderOptions = {}) {
   const { minLoadingTime = 2000, criticalResources = [] } = options;
   const [isLoading, setIsLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
+  const [loadingText, setLoadingText] = useState("Loading...");
 
   useEffect(() => {
     let isMounted = true;
@@ -42,18 +43,40 @@ export function useResourceLoader(options: ResourceLoaderOptions = {}) {
       if (!isMounted) return;
 
       try {
-        // Load critical resources
-        const resourcePromises = criticalResources.map((resource, index) => {
-          return preloadResource(resource).then(() => {
-            if (isMounted) {
-              const progress = ((index + 1) / criticalResources.length) * 80;
-              setLoadingProgress(Math.min(progress, 80));
-            }
-          });
-        });
+        // Set initial loading text
+        if (isMounted) {
+          setLoadingText("Initializing...");
+          setLoadingProgress(10);
+        }
 
-        // Wait for all critical resources to load
-        await Promise.allSettled(resourcePromises);
+        // Load critical resources sequentially for better progress tracking
+        for (let i = 0; i < criticalResources.length; i++) {
+          const resource = criticalResources[i];
+          if (!isMounted) break;
+
+          try {
+            await preloadResource(resource);
+
+            if (isMounted) {
+              const progress = 10 + ((i + 1) / criticalResources.length) * 70;
+              setLoadingProgress(Math.min(progress, 80));
+
+              // Update loading text based on progress
+              if (progress < 30) {
+                setLoadingText("Loading assets...");
+              } else if (progress < 60) {
+                setLoadingText("Setting up 3D scene...");
+              } else if (progress < 80) {
+                setLoadingText("Preparing animations...");
+              }
+
+              // Small delay to make progress visible
+              await new Promise((resolve) => setTimeout(resolve, 100));
+            }
+          } catch (error) {
+            console.warn(`Failed to load resource: ${resource}`, error);
+          }
+        }
 
         if (!isMounted) return;
 
@@ -62,12 +85,15 @@ export function useResourceLoader(options: ResourceLoaderOptions = {}) {
         const remainingTime = Math.max(0, minLoadingTime - elapsedTime);
 
         if (remainingTime > 0) {
+          setLoadingText("Almost ready...");
+          setLoadingProgress(90);
           await new Promise((resolve) => setTimeout(resolve, remainingTime));
         }
 
         if (!isMounted) return;
 
         // Complete loading
+        setLoadingText("Complete!");
         setLoadingProgress(100);
 
         // Small delay before hiding loader
@@ -91,5 +117,5 @@ export function useResourceLoader(options: ResourceLoaderOptions = {}) {
     };
   }, [minLoadingTime, criticalResources]);
 
-  return { isLoading, loadingProgress };
+  return { isLoading, loadingProgress, loadingText };
 }

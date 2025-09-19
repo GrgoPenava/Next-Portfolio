@@ -1,44 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface LoaderProps {
-  onLoadingComplete: () => void;
+  progress: number;
+  loadingText: string;
 }
 
-export default function Loader({ onLoadingComplete }: LoaderProps) {
-  const [progress, setProgress] = useState(0);
-  const [loadingText, setLoadingText] = useState("Loading...");
-
-  useEffect(() => {
-    const loadingSteps = [
-      { text: "Initializing...", progress: 20 },
-      { text: "Loading assets...", progress: 40 },
-      { text: "Setting up 3D scene...", progress: 60 },
-      { text: "Preparing animations...", progress: 80 },
-      { text: "Almost ready...", progress: 95 },
-      { text: "Complete!", progress: 100 },
-    ];
-
-    let currentStep = 0;
-    const interval = setInterval(() => {
-      if (currentStep < loadingSteps.length) {
-        const step = loadingSteps[currentStep];
-        setLoadingText(step.text);
-        setProgress(step.progress);
-        currentStep++;
-      } else {
-        clearInterval(interval);
-        setTimeout(() => {
-          onLoadingComplete();
-        }, 500);
-      }
-    }, 300);
-
-    return () => clearInterval(interval);
-  }, [onLoadingComplete]);
-
+export default function Loader({ progress, loadingText }: LoaderProps) {
   return (
     <AnimatePresence>
       <motion.div
@@ -46,6 +15,14 @@ export default function Loader({ onLoadingComplete }: LoaderProps) {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
         className="fixed inset-0 z-[9999] bg-[#060010] flex items-center justify-center"
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 9999,
+        }}
       >
         <div className="flex flex-col items-center space-y-8">
           {/* Logo/Spinner */}
@@ -93,7 +70,7 @@ export default function Loader({ onLoadingComplete }: LoaderProps) {
             transition={{ duration: 0.2 }}
             className="text-white/60 text-sm"
           >
-            {progress}%
+            {Math.round(progress)}%
           </motion.div>
         </div>
       </motion.div>
