@@ -61,77 +61,7 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Set initial state immediately - cards are completely hidden
-      gsap.set(".bento-card", {
-        opacity: 0,
-        scale: 0.4,
-        rotation: (_i) => gsap.utils.random(-20, 20),
-        y: (_i) => gsap.utils.random(50, 100),
-        x: (_i) => gsap.utils.random(-30, 30),
-      });
-
-      // Create main timeline
-      const tl = gsap.timeline();
-
-      // Dramatic entrance - cards appear and assemble
-      tl.to(".bento-card", {
-        opacity: 1,
-        scale: 1,
-        rotation: 0,
-        x: 0,
-        y: 0,
-        duration: 0.8,
-        ease: "back.out(1.7)",
-        stagger: {
-          amount: 0.6,
-          from: "random",
-        },
-      })
-
-        // Quick bounce effect for extra impact
-        .to(
-          ".bento-card",
-          {
-            scale: 1.05,
-            duration: 0.15,
-            ease: "power2.out",
-            stagger: {
-              amount: 0.1,
-              from: "center",
-            },
-          },
-          "-=0.2"
-        )
-
-        // Settle back to normal
-        .to(".bento-card", {
-          scale: 1,
-          duration: 0.2,
-          ease: "power2.out",
-          stagger: {
-            amount: 0.1,
-            from: "center",
-          },
-        })
-
-        // Start continuous floating animation
-        .to(
-          ".bento-card",
-          {
-            y: -4,
-            duration: 3,
-            ease: "sine.inOut",
-            yoyo: true,
-            repeat: -1,
-            stagger: {
-              amount: 1.5,
-              from: "random",
-            },
-          },
-          "+=0.3"
-        );
-    });
+    const ctx = gsap.context(() => {});
 
     // Delayed ScrollTrigger refresh to avoid conflicts
     const refreshScrollTrigger = async () => {
@@ -150,7 +80,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="relative min-h-screen p-6 flex items-center justify-center">
+    <div className="relative min-h-screen p-2 sm:p-4 md:p-6 flex items-center justify-center">
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-3 auto-rows-fr">
@@ -163,17 +93,17 @@ export default function HomePage() {
           {/* GitHub Stats Card */}
           <GitHubStatsCard />
 
-          {/* Location Card */}
-          <LocationCard />
-
-          {/* Education Card */}
-          <EducationCard />
+          {/* Location Card and Projects Card - Side by Side */}
+          <div className="md:col-span-2 lg:col-span-2 grid grid-cols-2 gap-3">
+            <LocationCard />
+            <ProjectsCard onClick={openProjectsModal} />
+          </div>
 
           {/* Work Experience Card */}
           <WorkExperienceCard />
 
-          {/* Projects Card */}
-          <ProjectsCard onClick={openProjectsModal} />
+          {/* Education Card */}
+          <EducationCard />
 
           {/* Tech Stack Card - Bottom */}
           <TechStackCard />

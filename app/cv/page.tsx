@@ -64,7 +64,7 @@ export default function CVPage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <div className="relative z-10">
-        <div className="max-w-4xl mx-auto px-6 py-16 mt-32 xl:mt-16">
+        <div className="max-w-4xl mx-auto px-6 py-8 sm:py-12 md:py-16 mt-16 sm:mt-20 md:mt-24 xl:mt-12">
           <Header brightness={1} />
 
           <WorkExperience

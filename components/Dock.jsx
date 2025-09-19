@@ -15,7 +15,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 import "./Dock.css";
 
@@ -30,6 +30,7 @@ function DockItem({
   magnification,
   baseItemSize,
   router,
+  onItemClick,
 }) {
   const ref = useRef(null);
   const isHovered = useMotionValue(0);
@@ -58,6 +59,8 @@ function DockItem({
         router.push(href);
       }
     }
+    // Reset hover state after click for mobile devices
+    onItemClick();
   };
 
   // Prefetch internal links on hover
@@ -81,6 +84,15 @@ function DockItem({
       onHoverEnd={() => isHovered.set(0)}
       onFocus={() => isHovered.set(1)}
       onBlur={() => isHovered.set(0)}
+      onTouchStart={(e) => {
+        e.stopPropagation();
+        isHovered.set(1);
+        handleMouseEnter();
+      }}
+      onTouchEnd={(e) => {
+        e.stopPropagation();
+        // Don't reset immediately on touch end, let the click handler do it
+      }}
       onClick={handleClick}
       className={`dock-item ${className}`}
       tabIndex={0}
@@ -95,12 +107,39 @@ function DockItem({
 function DockLabel({ children, className = "", ...rest }) {
   const { isHovered } = rest;
   const [isVisible, setIsVisible] = useState(false);
+  const timeoutRef = useRef(null);
 
   useEffect(() => {
     const unsubscribe = isHovered.on("change", (latest) => {
-      setIsVisible(latest === 1);
+      if (latest === 1) {
+        setIsVisible(true);
+        // Clear any existing timeout
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
+        // Set timeout to hide label after 2 seconds on mobile devices
+        // Shorter timeout for mobile devices (1.5s) vs desktop (2s)
+        const isMobile =
+          typeof window !== "undefined" && window.innerWidth < 768;
+        const timeoutDuration = isMobile ? 1500 : 2000;
+
+        timeoutRef.current = setTimeout(() => {
+          setIsVisible(false);
+        }, timeoutDuration);
+      } else {
+        // Clear timeout if hover ends before timeout
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
+        setIsVisible(false);
+      }
     });
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, [isHovered]);
 
   return (
@@ -137,6 +176,7 @@ export default function Dock({
   baseItemSize = 50,
 }) {
   const router = useRouter();
+  const pathname = usePathname();
   const mouseX = useMotionValue(Infinity);
   const isHovered = useMotionValue(0);
 
@@ -146,6 +186,37 @@ export default function Dock({
   );
   const heightRow = useTransform(isHovered, [0, 1], [panelHeight, maxHeight]);
   const height = useSpring(heightRow, spring);
+
+  // Function to reset hover state after click (for mobile devices)
+  const handleItemClick = () => {
+    // Small delay to allow the click animation to complete
+    setTimeout(() => {
+      isHovered.set(0);
+      mouseX.set(Infinity);
+    }, 100);
+  };
+
+  // Handle touch events for mobile devices
+  const handleTouchStart = (e) => {
+    e.preventDefault();
+    isHovered.set(1);
+  };
+
+  const handleTouchEnd = (e) => {
+    e.preventDefault();
+    // Reset hover state after touch ends
+    setTimeout(() => {
+      isHovered.set(0);
+      mouseX.set(Infinity);
+    }, 150);
+  };
+
+  // Reset hover state when route changes (for mobile devices)
+  useEffect(() => {
+    // Reset hover state when navigating to a new page
+    isHovered.set(0);
+    mouseX.set(Infinity);
+  }, [pathname, isHovered, mouseX]);
 
   return (
     <motion.div
@@ -161,6 +232,8 @@ export default function Dock({
           isHovered.set(0);
           mouseX.set(Infinity);
         }}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
         className={`dock-panel ${className}`}
         style={{ height: panelHeight }}
         role="toolbar"
@@ -178,6 +251,7 @@ export default function Dock({
             magnification={magnification}
             baseItemSize={baseItemSize}
             router={router}
+            onItemClick={handleItemClick}
           >
             <DockIcon>{item.icon}</DockIcon>
             <DockLabel>{item.label}</DockLabel>
