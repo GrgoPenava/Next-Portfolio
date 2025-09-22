@@ -27,8 +27,6 @@ function EarthModel() {
   useEffect(() => {
     if (!groupRef.current) return;
 
-    console.log("🌍 Setting up ScrollTrigger for Earth3D on:", pathname);
-
     const ctx = gsap.context(() => {
       gsap.to(groupRef.current!.rotation, {
         y: Math.PI * 2,
@@ -39,9 +37,6 @@ function EarthModel() {
           end: "bottom bottom",
           scrub: 1,
           id: "earth-scroll-rotation",
-          onUpdate: () => {
-            console.log("📜 ScrollTrigger updating Earth rotation");
-          },
         },
       });
     });
@@ -49,11 +44,9 @@ function EarthModel() {
     // Refresh ScrollTrigger after setup
     setTimeout(() => {
       ScrollTrigger.refresh();
-      console.log("🔄 ScrollTrigger refreshed for Earth3D");
     }, 100);
 
     return () => {
-      console.log("🧹 Cleaning up Earth3D ScrollTrigger");
       ctx.revert();
     };
   }, [pathname]); // Depend on pathname to re-setup on route changes
@@ -63,9 +56,6 @@ function EarthModel() {
     const handleRouteChange = (event: CustomEvent) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { duration } = event.detail;
-      console.log(
-        "🌍 Earth3D received route change event, starting natural rotation"
-      );
 
       // Set initial rotation speed (higher = faster rotation)
       routeRotationSpeed.current = 20.0; // Adjust this value to control rotation speed
@@ -99,7 +89,6 @@ function EarthModel() {
         // Stop when speed is very low
         if (routeRotationSpeed.current < 0.1) {
           routeRotationSpeed.current = 0;
-          console.log("✅ Natural Earth rotation animation completed");
         }
       }
     }
