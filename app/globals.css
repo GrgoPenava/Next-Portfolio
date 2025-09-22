@@ -1,6 +1,15 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Prevent flash of unstyled content */
+html {
+  background-color: #060010;
+}
+
+body {
+  background-color: #060010;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

@@ -45,30 +45,12 @@ export default function EarthWidget() {
 
   // Add route change animation and refresh ScrollTrigger
   useEffect(() => {
-    console.log("EarthWidget useEffect triggered:", {
-      prevPathname: prevPathnameRef.current,
-      currentPathname: pathname,
-      isClient,
-      shouldAnimate:
-        prevPathnameRef.current !== pathname &&
-        isClient &&
-        prevPathnameRef.current !== null,
-    });
-
     // Only trigger animation if pathname actually changed and component is client-side
     if (
       prevPathnameRef.current !== pathname &&
       isClient &&
       prevPathnameRef.current !== null
     ) {
-      console.log(
-        "🌍 Route changed from",
-        prevPathnameRef.current,
-        "to",
-        pathname,
-        "- Starting Earth rotation animation"
-      );
-
       // Small delay to ensure DOM is stable after route change
       const timer = setTimeout(() => {
         // Trigger natural rotation effect by sending signal to Earth3D
@@ -81,16 +63,10 @@ export default function EarthWidget() {
           },
         });
         window.dispatchEvent(rotationEvent);
-        console.log("🌍 Dispatched natural rotation event for route change");
       }, 50); // Small delay to ensure stability
 
       // Update the previous pathname reference ONLY when animation is triggered
       prevPathnameRef.current = pathname;
-      console.log(
-        "📍 Updated prevPathname to:",
-        pathname,
-        "after animation trigger"
-      );
 
       return () => clearTimeout(timer);
     }
@@ -100,19 +76,11 @@ export default function EarthWidget() {
       // Single refresh with longer delay to let Earth3D setup first
       setTimeout(() => {
         ScrollTrigger.refresh();
-        console.log(
-          "🔄 EarthWidget: ScrollTrigger refreshed after route change"
-        );
       }, 200);
 
       // Update pathname reference for ScrollTrigger refresh (but not for animation)
       if (prevPathnameRef.current === null) {
         prevPathnameRef.current = pathname;
-        console.log(
-          "📍 Updated prevPathname to:",
-          pathname,
-          "for ScrollTrigger only"
-        );
       }
     }
   }, [pathname, isClient]);
@@ -155,7 +123,6 @@ export default function EarthWidget() {
   useEffect(() => {
     if (isClient && prevPathnameRef.current === null) {
       prevPathnameRef.current = pathname;
-      console.log("🎯 Initial pathname set to:", pathname);
     }
   }, [isClient, pathname]);
 
@@ -165,9 +132,6 @@ export default function EarthWidget() {
       // Single refresh with delay to let Earth3D setup
       const timer = setTimeout(() => {
         ScrollTrigger.refresh();
-        console.log(
-          "🔄 EarthWidget: ScrollTrigger refreshed after client mount"
-        );
       }, 150);
 
       return () => {
@@ -255,7 +219,7 @@ export default function EarthWidget() {
               <div
                 className="absolute flex items-center justify-center pointer-events-none"
                 style={{
-                  top: "-20px", // Closer to Earth
+                  top: "-20px",
                   left: "50%",
                   transform: `translateX(-50%) rotate(-${rotation}deg)`,
                 }}
@@ -314,7 +278,7 @@ export default function EarthWidget() {
             <div
               className="absolute flex items-center justify-center pointer-events-none"
               style={{
-                top: "-18px", // Closer to Earth
+                top: "-18px",
                 left: "50%",
                 transform: `translateX(-50%) rotate(-${rotation}deg)`,
               }}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Loader from "./Loader";
 import { useResourceLoader } from "../hooks/useResourceLoader";
 
@@ -27,19 +27,19 @@ const criticalResources = [
 ];
 
 export default function ClientLayout({ children }: ClientLayoutProps) {
-  const [showLoader, setShowLoader] = useState(true);
-  const { isLoading } = useResourceLoader({
+  const [isMounted, setIsMounted] = useState(false);
+  const { isLoading, loadingProgress, loadingText } = useResourceLoader({
     minLoadingTime: 2500, // Minimum 2.5 seconds loading time
     criticalResources,
   });
 
-  const handleLoadingComplete = () => {
-    setShowLoader(false);
-  };
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-  // Show loader while resources are loading
-  if (showLoader && isLoading) {
-    return <Loader onLoadingComplete={handleLoadingComplete} />;
+  // Show loader immediately on client side, or while loading
+  if (!isMounted || isLoading) {
+    return <Loader progress={loadingProgress} loadingText={loadingText} />;
   }
 
   // Show main content once loading is complete
