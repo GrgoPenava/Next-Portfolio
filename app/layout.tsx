@@ -7,6 +7,7 @@ import Dock from "../components/Dock";
 import { dockItems } from "./components/DockItems";
 import Icon from "./components/Icon";
 import ClientLayout from "../app/components/ClientLayout";
+import Particles from "../components/Particles";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -129,24 +130,16 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <ClientLayout>
-          <DotGrid
-            dotSize={5}
-            gap={15}
-            baseColor="#271E37"
-            activeColor="#5227FF"
-            proximity={120}
-            shockRadius={250}
-            shockStrength={5}
-            resistance={750}
-            returnDuration={1.5}
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              zIndex: 1,
-            }}
+          <Particles
+            particleColors={["#ffffff", "#ffffff"]}
+            particleCount={200}
+            particleSpread={10}
+            speed={0.1}
+            particleBaseSize={100}
+            moveParticlesOnHover={false}
+            alphaParticles={false}
+            disableRotation={false}
+            className=""
           />
           <EarthWidget />
           {children}

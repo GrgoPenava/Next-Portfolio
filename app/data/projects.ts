@@ -11,8 +11,8 @@ export const projects = [
       "/Tasky7.png",
       "/Tasky8.png",
       "/Tasky9.png",
-    ],
-    title: "Tasky - Task Management",
+    ] as string[],
+    title: "Tasky - Task Management" as string,
   },
   {
     images: [
@@ -26,7 +26,7 @@ export const projects = [
       "/VSCodeProfile7.png",
       "/VSCodeProfile8.png",
       "/VSCodeProfile9.png",
-    ],
-    title: "VS Code Profiles",
+    ] as string[],
+    title: "VS Code Profiles" as string,
   },
-];
+] as { images: string[]; title: string }[];
