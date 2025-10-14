@@ -49,7 +49,7 @@ export default function Projects({
               "Team creation and member management functionality",
               "Task creation, assignment, and delegation within teams",
               "Drag & Drop interface for task status management across different columns",
-              "Real-time team communication using WebSocket technology",
+              "Real-time team communication using WebSocket",
               "State management implementation with Pinia store",
               "RESTful Backend API with endpoint security and Prisma ORM integration",
               "Interactive API documentation with Swagger UI",
@@ -121,14 +121,13 @@ export default function Projects({
             Personal Project
           </p>
           <ExpandableText
-            text="Minimalist portfolio website featuring dynamic time-based theming, 3D interactive elements, and modern animations to showcase professional experience and projects."
+            text="You’re looking at the project. That’s the whole pitch."
             itemId="portfolio-project"
             brightness={brightness}
             expandedItems={expandedItems}
             onToggle={onToggleExpand}
             bulletPoints={[
-              "Dynamic time-based theme system with brightness calculations based on time of day",
-              "Interactive 3D Earth model with texture mapping",
+              "3D Earth model with texture mapping",
               "Modular component architecture with reusable components",
               "Smooth GSAP animations",
               "Expandable content sections",
@@ -141,6 +140,7 @@ export default function Projects({
               "TailwindCSS",
               "GSAP",
               "Three.js",
+              "Shadcn UI",
             ]}
           />
         </LaserCard>
@@ -174,8 +174,8 @@ export default function Projects({
               "Complete CRUD operations for VS Code profile management",
               "Rating system with like and dislike functionality",
               "Comment system for community engagement",
-              "Advanced search and filtering capabilities for profiles",
-              "Admin interface for comprehensive user management",
+              "Search and filtering capabilities for profiles",
+              "Admin interface for user management",
               "Containerized deployment with Docker and Docker Compose",
             ]}
             technologies={[

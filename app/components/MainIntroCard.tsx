@@ -24,14 +24,13 @@ export const MainIntroCard: React.FC = () => {
             Grgo Penava
           </h1>
 
-          <p className="text-lg text-purple-300 mb-1">Software Developer</p>
+          <p className="text-lg text-purple-300 mb-1">Software Engineer</p>
           <p className="text-sm text-gray-400 mb-3">
             25 years old • Zagreb, Croatia
           </p>
 
           <p className="text-gray-300 text-sm leading-relaxed">
-            Building modern web apps where performance meets great user
-            experience.
+            I break things. Then I fix them (usually). 🙂
           </p>
         </div>
 
@@ -42,7 +41,7 @@ export const MainIntroCard: React.FC = () => {
             </button>
           </Link>
           <a
-            href="mailto:grgo.penava@gmail.com"
+            href="mailto:grgopenava00@gmail.com"
             className="px-4 py-2 border border-purple-500/30 text-purple-300 text-sm font-medium rounded-lg hover:bg-purple-500/10 transition-colors"
           >
             Contact

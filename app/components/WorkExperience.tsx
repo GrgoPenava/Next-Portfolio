@@ -54,7 +54,7 @@ export default function WorkExperience({
               "Upgraded and maintained an existing Java-based system (both backend and frontend)",
               "Integrated multiple backend services for cross-system communication",
               "Deployed services across different environments using Jenkins and Ansible",
-              "Performed database schema upgrades and wrote custom SQL scripts",
+              "Optimized Spring Boot service to efficiently handle and fetch large volumes of data.",
               "Worked with Apache Kafka for real-time data streaming and service communication",
             ]}
             technologies={[
