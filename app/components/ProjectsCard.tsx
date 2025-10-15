@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { CursorIcon } from "./CursorIcon";
 
 interface ProjectsCardProps {
@@ -17,33 +18,39 @@ export const ProjectsCard: React.FC<ProjectsCardProps> = ({ onClick }) => {
           <div className="relative">
             {/* Bottom image - VS Code Profiles */}
             <div className="absolute inset-0 transform rotate-6 group-hover:rotate-12 transition-transform duration-500">
-              <div className="w-20 h-14 rounded-lg shadow-2xl overflow-hidden opacity-70 group-hover:opacity-90 transition-opacity duration-300">
-                <img
+              <div className="relative w-20 h-14 rounded-lg shadow-2xl overflow-hidden opacity-70 group-hover:opacity-90 transition-opacity duration-300">
+                <Image
                   src="/VsCodeProfilesProject.png"
                   alt="VS Code Profiles"
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="80px"
+                  className="object-cover"
                 />
               </div>
             </div>
 
             {/* Middle image - Tasky 2 */}
             <div className="absolute inset-0 transform -rotate-3 group-hover:-rotate-8 transition-transform duration-500 delay-75">
-              <div className="w-20 h-14 rounded-lg shadow-2xl overflow-hidden opacity-80 group-hover:opacity-95 transition-opacity duration-300">
-                <img
+              <div className="relative w-20 h-14 rounded-lg shadow-2xl overflow-hidden opacity-80 group-hover:opacity-95 transition-opacity duration-300">
+                <Image
                   src="/Tasky2.png"
                   alt="Tasky Project"
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="80px"
+                  className="object-cover"
                 />
               </div>
             </div>
 
             {/* Top image - Main Tasky */}
             <div className="relative transform group-hover:-translate-y-2 group-hover:scale-105 transition-all duration-500 delay-150">
-              <div className="w-20 h-14 rounded-lg shadow-2xl overflow-hidden">
-                <img
+              <div className="relative w-20 h-14 rounded-lg shadow-2xl overflow-hidden">
+                <Image
                   src="/TaskyProject.png"
                   alt="Tasky Main"
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="80px"
+                  className="object-cover"
                 />
               </div>
             </div>

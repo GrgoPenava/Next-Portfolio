@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { NavigationButton } from "./modal/NavigationButton";
 import { ModalHeader } from "./modal/ModalHeader";
 import { ProjectThumbnail } from "./modal/ProjectThumbnail";
@@ -97,8 +98,8 @@ export const ProjectsModal: React.FC<ProjectsModalProps> = ({
             <div className="p-4 sm:p-8">
               <div className="max-w-4xl mx-auto">
                 {/* Current Project Image */}
-                <div className="aspect-video bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl sm:rounded-2xl overflow-hidden mb-4 sm:mb-6 shadow-2xl border border-gray-700/50 group">
-                  <img
+                <div className="relative aspect-video bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl sm:rounded-2xl overflow-hidden mb-4 sm:mb-6 shadow-2xl border border-gray-700/50 group">
+                  <Image
                     key={`${selectedProjectIndex}-${selectedImageIndex}`}
                     src={
                       projects[selectedProjectIndex]?.images[selectedImageIndex]
@@ -106,7 +107,9 @@ export const ProjectsModal: React.FC<ProjectsModalProps> = ({
                     alt={`${projects[selectedProjectIndex]?.title} - Image ${
                       selectedImageIndex + 1
                     }`}
-                    className="w-full h-full object-contain transition-all duration-500"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1024px"
+                    className="object-contain transition-all duration-500"
                   />
                 </div>
               </div>

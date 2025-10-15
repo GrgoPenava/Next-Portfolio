@@ -142,13 +142,16 @@ export default function EarthWidget() {
 
   // Cleanup on unmount
   useEffect(() => {
+    const earthElement = earthRef.current;
+    const earthMobileElement = earthRefMobile.current;
+    
     return () => {
       // Cleanup all animations and ScrollTriggers
-      if (earthRef.current) {
-        gsap.killTweensOf(earthRef.current);
+      if (earthElement) {
+        gsap.killTweensOf(earthElement);
       }
-      if (earthRefMobile.current) {
-        gsap.killTweensOf(earthRefMobile.current);
+      if (earthMobileElement) {
+        gsap.killTweensOf(earthMobileElement);
       }
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
