@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export const MainIntroCard: React.FC = () => {
   return (
@@ -7,10 +8,13 @@ export const MainIntroCard: React.FC = () => {
       <div className="h-full flex flex-col justify-center relative">
         {/* Profile Image - positioned in top right corner */}
         <div className="absolute top-0 right-0 w-24 h-24 transition-all duration-300">
-          <img
+          <Image
             src="/grgo_v1_nobg.png"
             alt="Grgo Penava"
+            width={96}
+            height={96}
             className="w-full h-full object-contain drop-shadow-lg"
+            priority
           />
         </div>
 

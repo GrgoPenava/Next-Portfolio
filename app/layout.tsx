@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import EarthWidget from "./components/EarthWidget";
-import DotGrid from "../components/DotGrid";
 import Dock from "../components/Dock";
 import { dockItems } from "./components/DockItems";
 import Icon from "./components/Icon";

@@ -39,7 +39,7 @@ export default function ExpandableText({
       opacity: isExpanded ? 1 : 0,
       y: 0,
     });
-  }, []); // Run once on mount
+  }, [isExpanded]); // Run once on mount
 
   useEffect(() => {
     if (!expandableContentRef.current) return;

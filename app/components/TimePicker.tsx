@@ -224,12 +224,17 @@ export default function TimePicker({ onTimeChange }: TimePickerProps) {
 
     demoAnimation();
 
+    const mobileRing = mobileRingRef.current;
+    const desktopRing = desktopRingRef.current;
+    const mobileHandle = mobileHandleRef.current;
+    const desktopHandle = desktopHandleRef.current;
+
     return () => {
       gsap.killTweensOf([
-        mobileRingRef.current,
-        desktopRingRef.current,
-        mobileHandleRef.current,
-        desktopHandleRef.current,
+        mobileRing,
+        desktopRing,
+        mobileHandle,
+        desktopHandle,
       ]);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
