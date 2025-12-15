@@ -12,6 +12,7 @@ export interface InfoListItem {
 
 export interface InfoListCardProps {
     items: InfoListItem[];
+    colSpan?: string;
 }
 
 // Reusable InfoListItem component
@@ -43,9 +44,9 @@ const InfoListItem: React.FC<{ item: InfoListItem }> = ({ item }) => {
 };
 
 // Reusable InfoListCard component
-export const InfoListCard: React.FC<InfoListCardProps> = ({ items }) => {
+export const InfoListCard: React.FC<InfoListCardProps> = ({ items, colSpan = "col-span-2 md:col-span-2 lg:col-span-2" }) => {
     return (
-        <div className="bento-card md:col-span-2 lg:col-span-3 bg-black/20 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-4 group hover:border-purple-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-purple-500/5">
+        <div className={`bento-card ${colSpan} bg-black/20 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-4 group hover:border-purple-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-purple-500/5 h-full`}>
             <div className="space-y-3">
                 {items.map((item, index) => (
                     <InfoListItem key={index} item={item} />
