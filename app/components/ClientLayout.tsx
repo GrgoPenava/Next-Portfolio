@@ -3,22 +3,14 @@
 import { useState, useEffect } from "react";
 import Loader from "./Loader";
 import { useResourceLoader } from "../hooks/useResourceLoader";
-
-// localStorage polyfill for SSR
-/* if (typeof window === "undefined") {
-  global.localStorage = {
-    getItem: () => null,
-    setItem: () => {},
-    removeItem: () => {},
-    clear: () => {},
-    length: 0,
-    key: () => null,
-  } as Storage;
-} */
+import { projects } from "../data/projects";
 
 interface ClientLayoutProps {
   children: React.ReactNode;
 }
+
+// Get all project images for preloading
+const projectImages = projects.flatMap((project) => project.images);
 
 // Critical resources that need to be preloaded
 const criticalResources = [
@@ -36,6 +28,7 @@ const criticalResources = [
   "/icons/graduation-cap.svg",
   "/icons/badge.svg",
   "/icons/monitor.svg",
+  ...projectImages,
 ];
 
 export default function ClientLayout({ children }: ClientLayoutProps) {
