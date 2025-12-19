@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useRef } from "react";
+import React, { useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { NavigationButton } from "./modal/NavigationButton";
 import { ModalHeader } from "./modal/ModalHeader";
@@ -33,7 +33,6 @@ export const ProjectsModal: React.FC<ProjectsModalProps> = ({
   onImageSelect,
   onImageNavigate,
 }) => {
-  const [preloadedImages, setPreloadedImages] = useState<Set<string>>(new Set());
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
 
@@ -128,22 +127,6 @@ export const ProjectsModal: React.FC<ProjectsModalProps> = ({
         }`}
         onClick={onClose}
       />
-
-      {/* Hidden preload container for all images */}
-      <div className="hidden">
-        {projects.flatMap((project) =>
-          project.images.map((src, idx) => (
-            <Image
-              key={`preload-${src}-${idx}`}
-              src={src}
-              alt=""
-              width={1}
-              height={1}
-              priority
-            />
-          ))
-        )}
-      </div>
 
       {/* MOBILE LAYOUT */}
       <div
