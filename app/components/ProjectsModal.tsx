@@ -94,22 +94,6 @@ export const ProjectsModal: React.FC<ProjectsModalProps> = ({
     touchEndX.current = null;
   };
 
-  // Preload all images when modal opens
-  useEffect(() => {
-    if (isOpen) {
-      const allImages = projects.flatMap((project) => project.images);
-      allImages.forEach((src) => {
-        if (!preloadedImages.has(src)) {
-          const img = new window.Image();
-          img.src = src;
-          img.onload = () => {
-            setPreloadedImages((prev) => new Set(prev).add(src));
-          };
-        }
-      });
-    }
-  }, [isOpen, projects, preloadedImages]);
-
   if (!isOpen) return null;
 
   return (
