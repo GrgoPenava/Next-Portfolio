@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Loader from "./Loader";
 import { useResourceLoader } from "../hooks/useResourceLoader";
 import { projects } from "../data/projects";
@@ -48,5 +49,24 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   }
 
   // Show main content once loading is complete
-  return <>{children}</>;
+  return (
+    <>
+      {/* Hidden preload container for project images using Next.js Image optimization */}
+      <div className="hidden" aria-hidden="true">
+        {projects.flatMap((project) =>
+          project.images.map((src, idx) => (
+            <Image
+              key={`preload-${src}-${idx}`}
+              src={src}
+              alt=""
+              width={1200}
+              height={800}
+              priority
+            />
+          ))
+        )}
+      </div>
+      {children}
+    </>
+  );
 }
