@@ -27,7 +27,7 @@ export default function Education({ brightness }: EducationProps) {
             </p>
             <div className="flex items-center gap-2 mt-1">
               <svg
-                className="w-4 h-4 transition-all duration-300 text-purple-400"
+                className="w-4 h-4 shrink-0 transition-all duration-300 text-purple-400"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -66,7 +66,7 @@ export default function Education({ brightness }: EducationProps) {
             </p>
             <div className="flex items-center gap-2 mt-1">
               <svg
-                className="w-4 h-4 transition-all duration-300 text-purple-400"
+                className="w-4 h-4 shrink-0 transition-all duration-300 text-purple-400"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >

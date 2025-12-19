@@ -29,10 +29,12 @@ export default function Projects({
               href="https://github.com/GrgoPenava/tasky-frontend"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-2 text-purple-400 group-hover:text-purple-300"
+              className="group transition-colors duration-300 text-purple-400 group-hover:text-purple-300"
             >
-              Tasky Web Application
-              <ExternalLinkIcon size={16} />
+              Tasky Web Application{" "}
+              <span className="inline-block shrink-0 align-middle">
+                <ExternalLinkIcon size={16} />
+              </span>
             </a>
           </h3>
           <p className="text-sm mb-2 transition-colors duration-500 text-gray-400">
@@ -52,7 +54,7 @@ export default function Projects({
               "Real-time team communication using WebSocket",
               "State management implementation with Pinia store",
               "RESTful Backend API with endpoint security and Prisma ORM integration",
-              "Interactive API documentation with Swagger UI",
+              "API documentation with Swagger UI",
               "Responsive design using Shadcn UI component library and TailwindCSS",
               "Complete deployment on VPS with custom domain, HTTPS, Nginx, and Linux",
             ]}
@@ -76,28 +78,34 @@ export default function Projects({
               href="https://github.com/GrgoPenava/tasky-frontend"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-1 text-purple-400"
+              className="group transition-colors duration-300 text-purple-400"
             >
-              Frontend
-              <ExternalLinkIcon size={12} />
+              Frontend{" "}
+              <span className="inline-block shrink-0 align-middle">
+                <ExternalLinkIcon size={12} />
+              </span>
             </a>
             <a
               href="https://github.com/GrgoPenava/tasky-backend"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-1 text-purple-400"
+              className="group transition-colors duration-300 text-purple-400"
             >
-              Backend
-              <ExternalLinkIcon size={12} />
+              Backend{" "}
+              <span className="inline-block shrink-0 align-middle">
+                <ExternalLinkIcon size={12} />
+              </span>
             </a>
             <a
               href="https://github.com/GrgoPenava/Master-s-thesis"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-1 text-purple-400"
+              className="group transition-colors duration-300 text-purple-400"
             >
-              Thesis
-              <ExternalLinkIcon size={12} />
+              Thesis{" "}
+              <span className="inline-block shrink-0 align-middle">
+                <ExternalLinkIcon size={12} />
+              </span>
             </a>
           </div>
         </LaserCard>
@@ -111,17 +119,19 @@ export default function Projects({
               href="https://github.com/GrgoPenava/Next-Portfolio"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-2 text-purple-400 group-hover:text-purple-300"
+              className="group transition-colors duration-300 text-purple-400 group-hover:text-purple-300"
             >
-              Personal Portfolio Website
-              <ExternalLinkIcon size={16} />
+              Personal Portfolio Website{" "}
+              <span className="inline-block shrink-0 align-middle">
+                <ExternalLinkIcon size={16} />
+              </span>
             </a>
           </h3>
           <p className="text-sm mb-2 transition-colors duration-500 text-gray-400">
             Personal Project
           </p>
           <ExpandableText
-            text="You’re looking at the project. That’s the whole pitch."
+            text="You’re looking at the project."
             itemId="portfolio-project"
             brightness={brightness}
             expandedItems={expandedItems}
@@ -129,7 +139,7 @@ export default function Projects({
             bulletPoints={[
               "3D Earth model with texture mapping",
               "Modular component architecture with reusable components",
-              "Smooth GSAP animations",
+              "GSAP animations",
               "Expandable content sections",
               "Responsive design",
             ]}
@@ -151,10 +161,12 @@ export default function Projects({
               href="https://github.com/GrgoPenava/VsCodeProfiles-Nuxt"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-2 text-purple-400"
+              className="group transition-colors duration-300 text-purple-400"
             >
-              VS Code Profiles Platform
-              <ExternalLinkIcon size={16} />
+              VS Code Profiles Platform{" "}
+              <span className="inline-block shrink-0 align-middle">
+                <ExternalLinkIcon size={16} />
+              </span>
             </a>
           </h3>
           <p className="text-sm mb-2 transition-colors duration-500 text-gray-400">
@@ -167,7 +179,7 @@ export default function Projects({
             expandedItems={expandedItems}
             onToggle={onToggleExpand}
             bulletPoints={[
-              "User authentication and authorization system with JWT tokens",
+              "User authentication and authorization system (JWT)",
               "User profile management with S3-stored avatars using MinIO",
               "Multi-language support for Croatian and English localization",
               "Light and dark theme switching functionality",
@@ -200,10 +212,12 @@ export default function Projects({
               href="https://github.com/orgs/TechTitans-AiR/repositories"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-2 text-purple-400"
+              className="group transition-colors duration-300 text-purple-400"
             >
-              FinTech Application
-              <ExternalLinkIcon size={16} />
+              FinTech Application{" "}
+              <span className="inline-block shrink-0 align-middle">
+                <ExternalLinkIcon size={16} />
+              </span>
             </a>
           </h3>
           <p className="text-sm mb-2 transition-colors duration-500 text-gray-400">
@@ -246,10 +260,12 @@ export default function Projects({
               href="https://github.com/foivz/pi22-nzagorsca-iercegova-gpenava-dmilanovi.git"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-2 text-purple-400"
+              className="group transition-colors duration-300 text-purple-400"
             >
-              Parking Management System
-              <ExternalLinkIcon size={16} />
+              Parking Management System{" "}
+              <span className="inline-block shrink-0 align-middle">
+                <ExternalLinkIcon size={16} />
+              </span>
             </a>
           </h3>
           <p className="text-sm mb-2 transition-colors duration-500 text-gray-400">
@@ -263,7 +279,7 @@ export default function Projects({
             onToggle={onToggleExpand}
             bulletPoints={[
               "Collaborated with SICK Mobilisis company on smart city parking solution",
-              "Developed comprehensive parking space visualization for Dubrovnik city",
+              "Developed parking space visualization for Dubrovnik",
               "Created detailed parking space properties and characteristics display",
               "Built statistical analysis dashboard for parking usage patterns",
               "Calculated occupancy percentage for selected time periods",
@@ -286,10 +302,12 @@ export default function Projects({
               href="https://www.foi.unizg.hr/hr/novosti/predstavljanje-studentskih-wbl-projekata-foi-i-mobilisis"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-1 text-purple-400"
+              className="group transition-colors duration-300 text-purple-400"
             >
-              Project Presentation
-              <ExternalLinkIcon size={12} />
+              Project Presentation{" "}
+              <span className="inline-block shrink-0 align-middle">
+                <ExternalLinkIcon size={12} />
+              </span>
             </a>
           </div>
         </div>

@@ -44,7 +44,7 @@ export default function WorkExperience({
             </span>
           </div>
           <ExpandableText
-            text="Backend system development for a FinTech company focused on creating scalable and reliable financial services."
+            text="Backend system development for a FinTech company."
             itemId="7-payments"
             brightness={brightness}
             expandedItems={expandedItems}
@@ -52,15 +52,15 @@ export default function WorkExperience({
             bulletPoints={[
               "Designed and developed RESTful APIs using Spring Boot",
               "Upgraded and maintained an existing Java-based system (both backend and frontend)",
-              "Integrated multiple backend services for cross-system communication",
-              "Deployed services across different environments using Jenkins and Ansible",
-              "Optimized Spring Boot service to efficiently handle and fetch large volumes of data.",
               "Worked with Apache Kafka for real-time data streaming and service communication",
+              "Optimized Spring Boot service to efficiently handle and fetch large volumes of data.",
+              "Deployed services across different environments using Jenkins and Ansible",
+              "Integrated multiple backend services for cross-system communication",
             ]}
             technologies={[
+              "Spring Boot",
               "Java",
               "JavaScript",
-              "Spring Boot",
               "Apache Kafka",
               "Jenkins",
               "Ansible",

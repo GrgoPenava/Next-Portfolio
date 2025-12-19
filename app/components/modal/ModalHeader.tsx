@@ -14,7 +14,7 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
   onClose,
 }) => {
   return (
-    <div className="flex items-center justify-between p-3 sm:p-6 bg-gradient-to-r from-purple-900/20 to-pink-900/20 border-b border-purple-500/20">
+    <div className="flex items-center justify-between px-3 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-purple-900/20 to-pink-900/20 border-b border-purple-500/20">
       <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
         <div className="flex gap-1 sm:gap-2 flex-shrink-0">
           <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full"></div>
