@@ -25,10 +25,12 @@ export default function ThesesAndPapers({
               href="https://github.com/GrgoPenava/Masters-thesis"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-2 text-purple-400"
+              className="group transition-colors duration-300 text-purple-400"
             >
-              Application development based on Vue.js
-              <ExternalLinkIcon size={16} />
+              Application development based on Vue.js{" "}
+              <span className="inline-block shrink-0 align-middle">
+                <ExternalLinkIcon size={16} />
+              </span>
             </a>
           </h3>
           <p className="text-sm mb-2 transition-colors duration-500 text-gray-400">
@@ -49,10 +51,12 @@ export default function ThesesAndPapers({
               href="https://github.com/GrgoPenava/Bachelors-thesis"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-2 text-purple-400"
+              className="group transition-colors duration-300 text-purple-400"
             >
-              Industry 4.0 and lean production
-              <ExternalLinkIcon size={16} />
+              Industry 4.0 and lean production{" "}
+              <span className="inline-block shrink-0 align-middle">
+                <ExternalLinkIcon size={16} />
+              </span>
             </a>
           </h3>
           <p className="text-sm mb-2 transition-colors duration-500 text-gray-400">
@@ -73,10 +77,12 @@ export default function ThesesAndPapers({
               href="https://github.com/GrgoPenava/face-recognition"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transition-colors duration-300 inline-flex items-center gap-2 text-purple-400"
+              className="group transition-colors duration-300 text-purple-400"
             >
-              Face recognition in images using deep learning
-              <ExternalLinkIcon size={16} />
+              Face recognition in images using deep learning{" "}
+              <span className="inline-block shrink-0 align-middle">
+                <ExternalLinkIcon size={16} />
+              </span>
             </a>
           </h3>
           <p className="text-sm mb-2 transition-colors duration-500 text-gray-400">

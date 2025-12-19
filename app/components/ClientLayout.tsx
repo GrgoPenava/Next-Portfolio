@@ -4,6 +4,18 @@ import { useState, useEffect } from "react";
 import Loader from "./Loader";
 import { useResourceLoader } from "../hooks/useResourceLoader";
 
+// localStorage polyfill for SSR
+/* if (typeof window === "undefined") {
+  global.localStorage = {
+    getItem: () => null,
+    setItem: () => {},
+    removeItem: () => {},
+    clear: () => {},
+    length: 0,
+    key: () => null,
+  } as Storage;
+} */
+
 interface ClientLayoutProps {
   children: React.ReactNode;
 }

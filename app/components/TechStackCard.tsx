@@ -23,7 +23,7 @@ const LogoLoop: React.ComponentType<{
 
 export const TechStackCard: React.FC = () => {
   return (
-    <div className="bento-card md:col-span-4 lg:col-span-6 bg-black/20 backdrop-blur-sm border border-purple-500/20 rounded-2xl py-2 px-2 group hover:border-purple-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-purple-500/5 overflow-hidden h-fit">
+    <div className="bento-card col-span-2 md:col-span-4 lg:col-span-6 bg-black/20 backdrop-blur-sm border border-purple-500/20 rounded-2xl py-2 px-2 group hover:border-purple-400/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-purple-500/5 overflow-hidden">
       <LogoLoop
         logos={techLogos}
         speed={50}
@@ -34,6 +34,6 @@ export const TechStackCard: React.FC = () => {
         fadeOut={false}
         className="h-10"
       />
-    </div>
+      </div>
   );
 };

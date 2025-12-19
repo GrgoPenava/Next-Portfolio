@@ -61,7 +61,7 @@ export const EducationCard: React.FC = () => {
         }
     ];
 
-    return <InfoListCard items={educationItems} />;
+    return <InfoListCard items={educationItems} colSpan="col-span-2 md:col-span-2 lg:col-span-3" />;
 };
 
 export const WorkExperienceCard: React.FC = () => {

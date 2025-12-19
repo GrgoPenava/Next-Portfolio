@@ -6,11 +6,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MainIntroCard } from "./components/MainIntroCard";
 import {
   ExperienceCard,
-  GitHubStatsCard,
   LocationCard,
   EducationCard,
   WorkExperienceCard,
 } from "./components/BentoCards";
+import { GitHubProfileCard } from "./components/GitHubProfileCard";
 import { ProjectsCard } from "./components/ProjectsCard";
 import { TechStackCard } from "./components/TechStackCard";
 import { ProjectsModal } from "./components/ProjectsModal";
@@ -80,32 +80,30 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="relative min-h-screen p-2 sm:p-4 md:p-6 flex items-center justify-center">
+    <div className="relative min-h-screen p-2 pb-24 sm:p-4 sm:pb-24 md:p-6 md:pb-6 flex items-center justify-center">
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-3 auto-rows-fr">
-          {/* Main Intro Card - Large */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+          {/* Row 1: Main Intro (2) + (Experience + Location stacked) (1) + GitHub (3) = 6 */}
           <MainIntroCard />
-
-          {/* Experience Card */}
-          <ExperienceCard />
-
-          {/* GitHub Stats Card */}
-          <GitHubStatsCard />
-
-          {/* Location Card and Projects Card - Side by Side */}
-          <div className="md:col-span-2 lg:col-span-2 grid grid-cols-2 gap-3">
+          <div className="col-span-1 md:col-span-1 lg:col-span-1 flex flex-col gap-3">
+            <ExperienceCard />
             <LocationCard />
+          </div>
+          {/* Projects Card - next to Experience/Location on mobile */}
+          <div className="col-span-1 md:hidden">
             <ProjectsCard onClick={openProjectsModal} />
           </div>
+          <GitHubProfileCard />
 
-          {/* Work Experience Card */}
+          {/* Row 2: Projects (desktop only) + Work Experience (2) + Education (3) = 6 */}
+          <div className="hidden md:block md:col-span-1 lg:col-span-1">
+            <ProjectsCard onClick={openProjectsModal} />
+          </div>
           <WorkExperienceCard />
-
-          {/* Education Card */}
           <EducationCard />
 
-          {/* Tech Stack Card - Bottom */}
+          {/* Row 3: TechStack full width = 6 */}
           <TechStackCard />
         </div>
       </div>

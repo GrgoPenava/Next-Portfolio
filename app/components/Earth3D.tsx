@@ -17,8 +17,6 @@ function EarthModel() {
   const groupRef = useRef<THREE.Group>(null);
   const pathname = usePathname();
   const routeRotationSpeed = useRef(0);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const routeRotationTarget = useRef(0);
 
   const { scene } = useGLTF("/earth.glb");
 
@@ -54,9 +52,6 @@ function EarthModel() {
   // Listen for route change events
   useEffect(() => {
     const handleRouteChange = (event: CustomEvent) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { duration } = event.detail;
-
       // Set initial rotation speed (higher = faster rotation)
       routeRotationSpeed.current = 20.0; // Adjust this value to control rotation speed
     };
@@ -155,7 +150,10 @@ function Lights() {
   );
 }
 
-useGLTF.preload("/earth.glb");
+// Preload only on client side to avoid localStorage SSR error
+if (typeof window !== "undefined") {
+  useGLTF.preload("/earth.glb");
+}
 
 export default function Earth3D() {
   return (
