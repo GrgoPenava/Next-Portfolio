@@ -53,7 +53,9 @@ function DockItem({
   const handleClick = () => {
     if (href) {
       if (external) {
-        window.open(href, "_blank");
+        // Use window.location.href for better mobile compatibility
+        // This opens in the same tab but maintains proper navigation history
+        window.location.href = href;
       } else {
         // Use Next.js router for internal navigation
         router.push(href);
